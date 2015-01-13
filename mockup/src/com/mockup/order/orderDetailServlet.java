@@ -19,41 +19,15 @@ import com.mockup.user.service.userService;
 import com.mockup.user.service.impl.userServiceImpl;
 
 public class orderDetailServlet extends HttpServlet{
-
+ 
 	@Override 
 	public  void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		resp.setContentType("text/html;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
-		
-		try{
-			orderService orderservice=new orderServiceImpl();
-			orderDetail orderdetail=orderservice.getOrderDetail(req.getParameter("orderid"), req.getParameter("paywayid"));
-			User me =User.getMe();
-			shouOrderDetail(resp, orderdetail, me);
-		}catch(Exception e)
-		{
-			showError(resp,e.getMessage());
-		}
-	}
-	private void showError(HttpServletResponse resp, String message) throws IOException {
-		PrintWriter out = resp.getWriter();
-		
-		out.println("<html>");
-		out.println("<head>");
-		out.println("	<title>Error</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("	<h2 align=\"center\">Error</h2>");
-		out.println("	<hr>");
-		out.println("	System Error," + message + "!");
-		out.println("</body>");
-		out.println("</html>");
-		
-		out.close();
-	}
-	private void shouOrderDetail(HttpServletResponse resp,
-			orderDetail orderdetail, User me) throws IOException {
+		orderService orderservice=new orderServiceImpl();
+		orderDetail orderdetail=(orderDetail) req.getAttribute("orderdetail");
+		User me =(User) req.getAttribute("me");
 		PrintWriter out =resp.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");

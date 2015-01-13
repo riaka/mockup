@@ -45,15 +45,15 @@ public class orderListServlet extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"productlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"usermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"shoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"orderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"productlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -92,19 +92,19 @@ public class orderListServlet extends HttpServlet {
 		
 		
 		//订单表
-		orderService orders=new orderServiceImpl();
-		List orderlist=orders.getOrderList();
+		
+		List orderlist=(List) req.getAttribute("orderlist");
 		order order;
 		for(int i=0;i<orderlist.size();i++){
 			 order=(order) orderlist.get(i);
 		out.println("				<td class=tablebody2 valign=middle align=center>"+i+"</td>");
-		out.println("				<td class=tablebody1 valign=middle>&nbsp;&nbsp;<a href=\"orderdetail\">"+order.getOrderid()+"</a></td>");
+		out.println("				<td class=tablebody1 valign=middle>&nbsp;&nbsp;<a href=\"toorderdetail.order?orderid="+order.getOrderid()+"&paywayid="+order.getPaywayid()+"\">"+order.getOrderid()+"</a></td>");
 		out.println("				<td class=tablebody2 valign=middle align=left>&nbsp;&nbsp;￥"+order.getCost()+"</td>");
 		out.println("				<td class=tablebody1 valign=middle align=center>"+order.getStatusid()+"</td>");
 		out.println("				<td class=tablebody2 valign=middle align=left>&nbsp;&nbsp;"+order.getPaywayid()+" </td>");
 		out.println("				<td class=tablebody1 valign=middle align=center>");
-		out.println("					<input type=\"button\" value=\"删除\" onclick=\"javascript:window.location='orderlist';\">&nbsp;");
-		out.println("					<input type=\"button\" value=\"明细\" onclick=\"javascript:window.location='orderdetail?orderid="+order.getOrderid()+"&paywayid="+order.getPaywayid()+"';\">");
+		out.println("					<input type=\"button\" value=\"删除\" onclick=\"javascript:window.location='toorderlist.order';\">&nbsp;");
+		out.println("					<input type=\"button\" value=\"明细\" onclick=\"javascript:window.location='toorderdetail.order?orderid="+order.getOrderid()+"&paywayid="+order.getPaywayid()+"';\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -139,8 +139,7 @@ public class orderListServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		
 	}
 
 }
