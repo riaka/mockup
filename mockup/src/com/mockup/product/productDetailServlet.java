@@ -34,7 +34,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("		<title>达内电子商务门户</title>");
 		out.println("		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 		out.println("		<meta name=\"description\" content=\"达内电子商务门户\">");
-		out.println("		<link href=\"../../css/tarena.css\" rel=stylesheet>");
+		out.println("		<link href=\"css/tarena.css\" rel=stylesheet>");
 		out.println("	</head>");
 		out.println("	<body topmargin=\"0\" leftmargin=\"0\" rightmargin=\"0\" bottommargin=\"0\">");
 		out.println("<!-- Header Start -->");
@@ -52,15 +52,15 @@ public class productDetailServlet extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"productlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"usermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"shoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"orderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"productlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -179,7 +179,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("			");
 		out.println("			<tr>");
 		out.println("			<td colspan=\"2\" class=tablebody2 valign=\"top\" align=\"center\" width=\"100%\" height=\"32\"> ");
-		out.println("				<a href=\"shoppingcart?productid="+product.getProductid()+"\"><img border=\"0\" src=\"images/buycar.gif\" ></a> ");
+		out.println("				<a href=\"toshoppingcart.cart?productid="+product.getProductid()+"\"><img border=\"0\" src=\"images/buycar.gif\" ></a> ");
 		out.println("    		</td>");
 		out.println("    		</tr>");
 		out.println("			");
