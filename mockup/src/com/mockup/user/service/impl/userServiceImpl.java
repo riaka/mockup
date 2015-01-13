@@ -64,8 +64,24 @@ public class userServiceImpl implements userService {
 
 	@Override
 	public User getCertainUser(String userid) {
+		String query="select users.userid,password,street1,street2,city,province,country,zip,email,homephone,"
+				+ "cellphone,officephone from users,contactinfo where users.userid = contactinfo.userid and users.userid = '"+userid+"';";
 		User user=null;
-		String query="select users.userid,password,street1,street2,city,province,country,zip,email,homephone,cellphone,officephone from users,contactinfo where users.userid = contactinfo.userid and users.userid = '"+userid+"';";
+		fetchUser(query, user);
+		return user;
+	}
+
+	@Override
+	public User login(String userid,String password) {
+		String query="select users.userid,password,street1,street2,city,province,country,zip,email,homephone,cellphone,"
+				+ "officephone from users,contactinfo where users.userid = contactinfo.userid and users.userid = '"+userid+"' and password = '"+password+"';";
+		User user=null;
+		fetchUser(query, user);
+		return user;
+	}
+	
+	private void fetchUser(String query, User user) {
+		
 		Connection conn=null;
 		Statement stmt= null;
 		ResultSet result=null;
@@ -106,6 +122,5 @@ public class userServiceImpl implements userService {
 				throw new RuntimeException("error when querying database ",e);
 			}
 		}
-		return user;
 	}
 }

@@ -1,16 +1,14 @@
 package com.mockup.user.pojo;
 
 public class User {
+
+	public static String ADMIN="admin";
 	private String userid="";
 	private String password="";
 	private UserInformation info=new UserInformation();
-	private static User me=null;
-	public static User getMe()
-	{
-		if(me==null)
-			me=new User();
-		return me;
-	}
+	
+	public User(){};
+	
 	public String getPassword() {
 		return password;
 	}
