@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mockup.order.pojo.orderDetail;
 import com.mockup.order.pojo.orderLine;
@@ -25,10 +26,11 @@ public class orderDetailServlet extends HttpServlet{
 			throws ServletException, IOException {
 		resp.setContentType("text/html;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
+		HttpSession session=req.getSession();
 		orderDetail orderdetail=(orderDetail) req.getAttribute("orderdetail");
 		if(orderdetail==null)
 			orderdetail=new orderDetail();
-		User me =(User) req.getAttribute("user");
+		User me =(User) session.getAttribute("user");
 		if(me==null)
 			me=new User();
 		PrintWriter out =resp.getWriter();

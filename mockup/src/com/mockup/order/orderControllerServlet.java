@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mockup.order.pojo.orderDetail;
 import com.mockup.order.service.orderService;
@@ -17,18 +18,17 @@ public class orderControllerServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
  			throws ServletException, IOException {
- 		
+ 		HttpSession session=req.getSession();
  		String path = req.getServletPath();		
  		path = path.substring(0,path.indexOf("."));
  
- 		User user=(User)req.getAttribute("user");
+ 		User user=(User)session.getAttribute("user");
  		if(user==null)
 		{
 			req.setAttribute("message", "请先登录");
 			getServletContext().getRequestDispatcher("/userlogin").forward(req, resp);
 		}
-		else 
-		if("/toorderlist".equals(path)){
+		else if("/toorderlist".equals(path)){
  			try{		
  				orderService orderservice = new orderServiceImpl();				
  				List orderlist = orderservice.getOrderList();				
@@ -44,7 +44,6 @@ public class orderControllerServlet extends HttpServlet {
 				orderService orderservice=new orderServiceImpl();
 				orderDetail orderdetail=orderservice.getOrderDetail(req.getParameter("orderid"), req.getParameter("paywayid"));
 				req.setAttribute("orderdetail", orderdetail);
-				req.setAttribute("user", user);
 				getServletContext().getRequestDispatcher("/orderdetail").forward(req, resp);
 			}catch(Exception e)
 			{

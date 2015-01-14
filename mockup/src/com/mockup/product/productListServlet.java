@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mockup.product.pojo.Product;
  
@@ -27,7 +28,8 @@ public class productListServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
 		List productList = (List) req.getAttribute("productlist");
-		User user=(User)req.getAttribute("user");
+		HttpSession session=req.getSession();
+		User user=(User)session.getAttribute("user");
 		if(user==null)
 			user=new User();
 		if(productList==null)

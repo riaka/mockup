@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mockup.user.pojo.User;
 import com.mockup.user.service.userService;
@@ -20,9 +21,9 @@ public class userControllerServlet extends HttpServlet{
 			throws ServletException, IOException {
 		String path = req.getServletPath(); 		
  		path = path.substring(0,path.indexOf("."));
-
+ 		HttpSession session=req.getSession();
  		if("/tousermanage".equals(path)){
- 			User user=(User)req.getAttribute("user");
+ 			User user=(User)session.getAttribute("user");
  			if(user==null)
  			{
  				req.setAttribute("message", "请先登录");
@@ -68,6 +69,7 @@ public class userControllerServlet extends HttpServlet{
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		HttpSession session=req.getSession();
 		String path = req.getServletPath(); 		
  		path = path.substring(0,path.indexOf("."));
 		if("/dologin".equals(path)){
@@ -79,7 +81,7 @@ public class userControllerServlet extends HttpServlet{
 			userService userservice = new userServiceImpl();
 			User user=userservice.login(username,password);
 			if(user!=null){
-				req.setAttribute("user", user);				
+				session.setAttribute("user", user);				
 				getServletContext().getRequestDispatcher("/productlist").forward(req, resp);
 			}else{
 				req.setAttribute("message", "用户名或密码错误");
