@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.mockup.mysql.sqlConnect;
@@ -123,5 +124,59 @@ public class userServiceImpl implements userService {
 			}
 		}
 		return user;
+	}
+
+	@Override
+	public Boolean registerUser(User user) {
+		
+		Connection conn=null;
+		Statement stmt= null;
+		ResultSet result=null;
+		Boolean flag = true;
+		String query = "select userid from users";
+		try {
+			conn = sqlConnect.getConn();
+			stmt=conn.createStatement();
+			result=stmt.executeQuery(query);
+			
+			//表明已有人注册
+			while(result.next())
+			{
+				if(user.getUserid().equals(result.toString().trim()))
+				{
+					flag = false;
+					break;
+				}
+			}
+			if(flag)
+			{
+				result.last();
+				//插入数据进数据库
+				String str1 = "INSERT INTO users VALUES ('"+user.getUserid()+"', '"+user.getPassword()+"')";
+				String str2 = "INSERT INTO contactinfo VALUES ("+result.getRow()+1+", '"+user.getUserid()+"', '"+user.getStreet1()
+				+"', '"+user.getStreet2()+"', '"+user.getCity()+"', '"+ user.getProvince()+", '"+user.getCountry()+", '"+
+						user.getZip()+"', '"+user.getEmail()+"', '"+user.getHomephone()+"', '"+user.getCellphone()+"', '"+user.getOfficephone()+"')";
+							
+				if(stmt.executeUpdate(str1) == 0 || stmt.executeUpdate(str2) == 0)
+					flag = false;
+			}
+			
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			throw new RuntimeException("error when inserting database ",e1);
+		}
+		finally {
+			try {
+				result.close();
+				stmt.close();
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("error when inserting database ",e);
+			}
+		}
+		return flag;
 	}
 }

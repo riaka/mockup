@@ -86,7 +86,8 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("");
 		out.println("		</table>");
 		out.println("		<br>");
-		out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate(this)\" action=\"doregister.user\">");
+		//out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate(this)\" action=\"doregister.user\">");
+		out.println("		<form id=\"registerform\" method=\"post\"  action=\"doregister.user\">");
 		out.println("			<table class=\"tableborder1\" id=\"table1\" align=\"center\" cellpadding=\"3\" cellspacing=\"1\">");
 		out.println("			<tbody>");
 		out.println("			<tr>");
@@ -239,8 +240,9 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("			");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody2\" colspan=\"2\" align=\"center\" valign=\"middle\">");
-		out.println("				<input value=\"注 册\" type=\"submit\" onclick=\"productlist\">&nbsp;&nbsp;");
-		out.println("				<input value=\"清 除\" type=\"reset\"></td>");
+		out.println("				<input type=\"submit\" value=\"注册\">&nbsp;&nbsp;");
+		out.println("				<a href=\"doregister.user\">注册</td>");
+		//out.println("				<input value=\"清 除\" type=\"reset\"></td>");
 		out.println("");
 		out.println("			</tr>");
 		out.println("			</tbody>");
