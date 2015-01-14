@@ -132,7 +132,7 @@ public class productListServlet extends HttpServlet {
 			out.println("					"+product.getBasePrice());
 			out.println("				</td>");
 			out.println("				");
-			out.println("    <td class=tablebody1 valign=\"middle\" align=\"center\" width=\"24%\"> <a href=\"toshoppingcart.cart?productid="+product.getProductid()+"\"><img border=\"0\" src=\"images/car_new.gif\" width=\"97\" height=\"18\"></a> ");
+			out.println("    <td class=tablebody1 valign=\"middle\" align=\"center\" width=\"24%\"> <a href=\"addtoshoppingcart.cart?productid="+product.getProductid()+"\"><img border=\"0\" src=\"images/car_new.gif\" width=\"97\" height=\"18\"></a> ");
 			out.println("    </td>");
 			out.println("			</tr>   ");
 		}

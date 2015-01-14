@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mockup.product.pojo.Product;
 import com.mockup.shoppingcart.pojo.shoppingCart;
@@ -22,9 +23,9 @@ public class shoppingCartServlet extends HttpServlet {
 		resp.setContentType("textml;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
-		shoppingcartService productservice=new shoppingcartServiceImpl();
-		productservice.addToMyShoppingCart(req.getParameter("productid"));
-		shoppingCart mycart=shoppingCart.getMyShoppingCart();
+		HttpSession session=req.getSession();
+		shoppingCart mycart=(shoppingCart)session.getAttribute("shoppingcart");
+		
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
 		out.println("	<head>");
@@ -49,15 +50,15 @@ public class shoppingCartServlet extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"productlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"usermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"shoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"orderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"productlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -117,12 +118,13 @@ public class shoppingCartServlet extends HttpServlet {
 		out.println("				</td>");
 		out.println("			</tr>");
 		Product product;
+		int i=1;
 		for(Iterator<Product> products=mycart.getProducts().iterator();products.hasNext();)
 		{
 			product=products.next();
 			out.println("			<tr>");
 			out.println("				<td class=tablebody2 valign=\"middle\" align=\"center\" width=\"8%\">");
-			out.println("					"+product.getProductid());
+			out.println("					"+i++);
 			out.println("				</td>");
 			out.println("				<td class=tablebody1 valign=\"middle\" align=\"center\" width=\"44%\">");
 			out.println("					"+product.getName());
@@ -157,9 +159,9 @@ public class shoppingCartServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 valign=\"middle\" align=\"center\" width=\"8%\" colspan=\"6\">");
 		out.println("				<form>");
-		out.println("					<input type=\"button\" value=\"提交订单\" size=\"1\" onclick=\"javascript:window.location='orderconfirm';\">");
-		out.println("					<input type=\"button\" value=\"继续购物\" size=\"2\" onclick=\"javascript:window.location='productlist';\">");
-		out.println("					<input type=\"button\" value=\"清空购物车\" size=\"2\" onclick=\"javascript:window.location='productlist';\">");
+		out.println("					<input type=\"button\" value=\"提交订单\" size=\"1\" onclick=\"javascript:window.location='toorderconfirm.cart';\">");
+		out.println("					<input type=\"button\" value=\"继续购物\" size=\"2\" onclick=\"javascript:window.location='toproductlist.product';\">");
+		out.println("					<input type=\"button\" value=\"清空购物车\" size=\"2\" onclick=\"javascript:window.location='tocleancart.cart';\">");
 		out.println("				</form>");
 		out.println("				</td>");
 		out.println("			</tr>");

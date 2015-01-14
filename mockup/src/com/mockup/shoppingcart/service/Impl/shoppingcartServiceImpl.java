@@ -12,8 +12,7 @@ import com.mockup.shoppingcart.service.shoppingcartService;
 public class shoppingcartServiceImpl implements shoppingcartService {
 
 	@Override
-	public void addToMyShoppingCart(String productid) {
-		shoppingCart mycart=shoppingCart.getMyShoppingCart();
+	public void addToMyShoppingCart(shoppingCart mycart,String productid) {
 		String query="select * from product where productid='"+productid+"';";
 		Connection conn = null;
 		Statement stmt = null;
@@ -34,7 +33,7 @@ public class shoppingcartServiceImpl implements shoppingcartService {
 				product.setPublish(rs.getString("publish"));
 				product.setPages(rs.getString("pages"));
 				product.setImages(rs.getString("images"));
-				mycart.add(product);
+				mycart.getProducts().add(product);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

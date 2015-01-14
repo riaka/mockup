@@ -175,7 +175,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("			");
 		out.println("			<tr>");
 		out.println("			<td colspan=\"2\" class=tablebody2 valign=\"top\" align=\"center\" width=\"100%\" height=\"32\"> ");
-		out.println("				<a href=\"toshoppingcart.cart?productid="+product.getProductid()+"\"><img border=\"0\" src=\"images/buycar.gif\" ></a> ");
+		out.println("				<a href=\"addtoshoppingcart.cart?productid="+product.getProductid()+"\"><img border=\"0\" src=\"images/buycar.gif\" ></a> ");
 		out.println("    		</td>");
 		out.println("    		</tr>");
 		out.println("			");
