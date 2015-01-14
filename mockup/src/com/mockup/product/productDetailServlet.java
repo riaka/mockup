@@ -22,11 +22,7 @@ public class productDetailServlet extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out=resp.getWriter();
 		///product详细
-		
-		productService productService;
-		List productList = null;
-		productService = new productServiceimpl();
-		Product product= productService.getProduct(req.getParameter("productid"));
+		Product product= (Product)req.getAttribute("product");
 	
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");

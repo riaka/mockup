@@ -10,6 +10,33 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
+  	<servlet-name>orderController</servlet-name>
+  	<servlet-class>com.mockup.order.orderControllerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>orderController</servlet-name>
+  	<url-pattern>*.order</url-pattern>
+  </servlet-mapping>
+   
+   <servlet>
+  	<servlet-name>productController</servlet-name>
+  	<servlet-class>com.mockup.product.productControllerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>productController</servlet-name>
+  	<url-pattern>*.product</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>userController</servlet-name>
+  	<servlet-class>com.mockup.user.userControllerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userController</servlet-name>
+  	<url-pattern>*.user</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>userModify</servlet-name>
   	<servlet-class>com.mockup.user.userModifyServlet</servlet-class>
   </servlet>
@@ -109,25 +136,6 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>orderController</servlet-name>
-  	<servlet-class>com.mockup.order.orderControllerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>orderController</servlet-name>
-  	<url-pattern>*.order</url-pattern>
-  </servlet-mapping>
-  
-  
-   <servlet>
-  	<servlet-name>productController</servlet-name>
-  	<servlet-class>com.mockup.product.productControllerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>productController</servlet-name>
-  	<url-pattern>*.product</url-pattern>
-  </servlet-mapping>
-  
-     <servlet>
   	<servlet-name>error</servlet-name>
   	<servlet-class>com.mockup.errorhelper.error</servlet-class>
   </servlet>
@@ -135,5 +143,4 @@
   	<servlet-name>error</servlet-name>
   	<url-pattern>/error</url-pattern>
   </servlet-mapping>
-  
 </web-app>

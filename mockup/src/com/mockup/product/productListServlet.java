@@ -2,6 +2,7 @@ package com.mockup.product;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.mockup.product.pojo.Product;
  
 import com.mockup.product.service.productService;
 import com.mockup.product.service.impl.productServiceimpl;
+import com.mockup.user.pojo.User;
 
 public class productListServlet extends HttpServlet {
 
@@ -24,6 +26,12 @@ public class productListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		resp.setContentType("text/html;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
+		List productList = (List) req.getAttribute("productlist");
+		User user=(User)req.getAttribute("user");
+		if(user==null)
+			user=new User();
+		if(productList==null)
+			productList=new ArrayList();
 		PrintWriter out=resp.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -49,15 +57,15 @@ public class productListServlet extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"productlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"usermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"shoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"orderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"productlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -78,7 +86,7 @@ public class productListServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=index.jsp>达内电子商务门户</a> →<img border=\"0\" src=\"images/dog.gif\" width=\"19\" height=\"18\">欢迎<font color=\"red\">admin</font>光临！");
+		out.println("					<a href=index.jsp>达内电子商务门户</a> →<img border=\"0\" src=\"images/dog.gif\" width=\"19\" height=\"18\">欢迎<font color=\"red\">"+user.getUserid()+"</font>光临！");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");
@@ -106,23 +114,7 @@ public class productListServlet extends HttpServlet {
 		out.println("					</font>");
 		out.println("				</td>");
 		out.println("			</tr>");
-		
-		
-		productService productService;
-		List productList = null;
-		  //列表
-				try{
-				 productService = new productServiceimpl();
-					
-					productList = productService.getProductList();
-
-					 
-				
-			}catch (Exception e){
-				
-			}
-				
-			 
+		 
  		Product product;
 		for(int i=0;i<productList.size();i++)
 		{
@@ -132,13 +124,13 @@ public class productListServlet extends HttpServlet {
 			out.println("					"+product.getProductid());
 			out.println("				</td>");
 			out.println("				");
-			out.println("    <td class=tablebody1 valign=\"middle\" width=\"60%\"> &nbsp;&nbsp;<a href=\"productdetail?productid="+product.getProductid()+"\">"+product.getName()+"</a> ");
+			out.println("    <td class=tablebody1 valign=\"middle\" width=\"60%\"> &nbsp;&nbsp;<a href=\"toproductdetail.product?productid="+product.getProductid()+"\">"+product.getName()+"</a> ");
 			out.println("    </td>");
 			out.println("				<td class=tablebody2 valign=\"middle\" align=\"center\" width=\"8%\">");
 			out.println("					"+product.getBasePrice());
 			out.println("				</td>");
 			out.println("				");
-			out.println("    <td class=tablebody1 valign=\"middle\" align=\"center\" width=\"24%\"> <a href=\"shoppingcart?productid="+product.getProductid()+"\"><img border=\"0\" src=\"images/car_new.gif\" width=\"97\" height=\"18\"></a> ");
+			out.println("    <td class=tablebody1 valign=\"middle\" align=\"center\" width=\"24%\"> <a href=\"toshoppingcart.cart?productid="+product.getProductid()+"\"><img border=\"0\" src=\"images/car_new.gif\" width=\"97\" height=\"18\"></a> ");
 			out.println("    </td>");
 			out.println("			</tr>   ");
 		}

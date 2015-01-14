@@ -2,6 +2,7 @@ package com.mockup.order;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,9 @@ public class orderListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		resp.setContentType("text/html;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
+		List<order> orderlist=(List)req.getAttribute("orderlist");
+		if(orderlist==null)
+			orderlist=new ArrayList();
 		PrintWriter out =resp.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -45,18 +49,16 @@ public class orderListServlet extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          					<td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("");
+		out.println("							<td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("");
+		out.println("							<td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("");
+		out.println("							<td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
-		out.println("					</table>");
-		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");
 		out.println("		<table cellspacing=\"1\" cellpadding=\"3\" align=\"center\" border=\"0\" width=\"98%\">");
@@ -88,26 +90,23 @@ public class orderListServlet extends HttpServlet {
 		out.println("				<td valign=middle align=center height=25 background=\"images/bg2.gif\"><font color=\"#ffffff\"><b>付款方式</b></font></td>");
 		out.println("				<td valign=middle align=center height=25 background=\"images/bg2.gif\"><font color=\"#ffffff\"><b>操作</b></font></td>");
 		out.println("			</tr>");
-		out.println("			<tr>");
 		
-		
-		//订单表
-		
-		List orderlist=(List) req.getAttribute("orderlist");
+		//订单表		
 		order order;
 		for(int i=0;i<orderlist.size();i++){
-			 order=(order) orderlist.get(i);
-		out.println("				<td class=tablebody2 valign=middle align=center>"+i+"</td>");
-		out.println("				<td class=tablebody1 valign=middle>&nbsp;&nbsp;<a href=\"toorderdetail.order?orderid="+order.getOrderid()+"&paywayid="+order.getPaywayid()+"\">"+order.getOrderid()+"</a></td>");
-		out.println("				<td class=tablebody2 valign=middle align=left>&nbsp;&nbsp;￥"+order.getCost()+"</td>");
-		out.println("				<td class=tablebody1 valign=middle align=center>"+order.getStatusid()+"</td>");
-		out.println("				<td class=tablebody2 valign=middle align=left>&nbsp;&nbsp;"+order.getPaywayid()+" </td>");
-		out.println("				<td class=tablebody1 valign=middle align=center>");
-		out.println("					<input type=\"button\" value=\"删除\" onclick=\"javascript:window.location='toorderlist.order';\">&nbsp;");
-		out.println("					<input type=\"button\" value=\"明细\" onclick=\"javascript:window.location='toorderdetail.order?orderid="+order.getOrderid()+"&paywayid="+order.getPaywayid()+"';\">");
-		out.println("				</td>");
-		out.println("			</tr>");
-		out.println("			<tr>");
+			
+			 order=orderlist.get(i);
+			out.println("			<tr>");
+			 out.println("				<td class=tablebody2 valign=middle align=center>"+i+"</td>");
+			 out.println("				<td class=tablebody1 valign=middle>&nbsp;&nbsp;<a href=\"toorderdetail.order?orderid="+order.getOrderid()+"&paywayid="+order.getPaywayid()+"\">"+order.getOrderid()+"</a></td>");
+			 out.println("				<td class=tablebody2 valign=middle align=left>&nbsp;&nbsp;￥"+order.getCost()+"</td>");
+			 out.println("				<td class=tablebody1 valign=middle align=center>"+order.getStatusid()+"</td>");
+			 out.println("				<td class=tablebody2 valign=middle align=left>&nbsp;&nbsp;"+order.getPaywayid()+" </td>");
+			 out.println("				<td class=tablebody1 valign=middle align=center>");
+			 out.println("					<input type=\"button\" value=\"删除\" onclick=\"javascript:window.location='toorderlist.order';\">&nbsp;");
+			 out.println("					<input type=\"button\" value=\"明细\" onclick=\"javascript:window.location='toorderdetail.order?orderid="+order.getOrderid()+"&paywayid="+order.getPaywayid()+"';\">");
+			 out.println("				</td>");
+			 out.println("			</tr>");
 		}
 		
 		out.println("		</table>");

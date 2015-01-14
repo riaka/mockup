@@ -64,7 +64,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("");
 		out.println("							<td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toproductlist.order\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -105,8 +105,8 @@ public class userLoginServlet extends HttpServlet{
 		out.println("     					 请输入您的用户名:");
 		out.println("				 </td>");
 		out.println("				<td class=tablebody1 valign=\"middle\" height=\"20\" width=\"80%\">");
-		out.println(""+message+"					");
-		out.println("						<input type=\"text\">&nbsp;<a href=\"toregister.user\">注册新用户</a>");
+		out.println("					");
+		out.println("						<input type=\"text\">&nbsp;"+message+"<a href=\"toregister.user\">注册新用户</a>");
 		out.println("				");
 		out.println("				");
 		out.println("				");

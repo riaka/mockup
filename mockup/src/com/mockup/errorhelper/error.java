@@ -24,7 +24,7 @@ public class error extends HttpServlet{
 		out.println("<body>");
 		out.println("	<h2 align=\"center\">Error</h2>");
 		out.println("	<hr>");
-		out.println("	System Error," + req.getAttribute("errormessage") + "!");
+		out.println("	System Error," + (String)req.getAttribute("errormessage") + "!");
 		out.println("</body>");
 		out.println("</html>");
 		
