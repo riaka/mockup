@@ -13,15 +13,10 @@ public class userLoginServlet extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {	
-		dologin(req, resp);
+		show(req, resp);
 	}
 
-	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		dologin(req, resp);
-	}
-	private void dologin(HttpServletRequest req, HttpServletResponse resp)
+	private void show(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("textml;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
@@ -37,7 +32,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
 		out.println("		<meta name=\"description\" content=\"达内电子商务门户\">");
 		out.println("		<link href=\"css/tarena.css\" rel=stylesheet>");
-		out.println("              <script language=\"javascript\" src=\"loginvalidate.js\">");
+		out.println("              <script language=\"javascript\" src=\"js/loginvalidate.js\">");
 		out.println("	       </script>");
 		out.println("	</head>");
 		out.println("	<body topmargin=\"0\" leftmargin=\"0\" rightmargin=\"0\" bottommargin=\"0\">");
@@ -90,7 +85,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("			</tr>");
 		out.println("		</table>");
 		out.println("		<br>");
-		out.println("		<form method=\"post\" onsubmit=\"return loginvalidate(this)\" action=\"dologin.user\">");
+		out.println("		<form id=\"loginform\" method=\"post\" onsubmit=\"return loginvalidate(this)\" action=\"dologin.user\">");
 		out.println("		<table cellpadding=\"3\" cellspacing=\"1\" align=\"center\" class=\"tableborder1\">");
 		out.println("			<tr>");
 		out.println("				<td colspan=\"4\" valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"50\">");
@@ -106,7 +101,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("				 </td>");
 		out.println("				<td class=tablebody1 valign=\"middle\" height=\"20\" width=\"80%\">");
 		out.println("					");
-		out.println("						<input type=\"text\">&nbsp;"+message+"<a href=\"toregister.user\">注册新用户</a>");
+		out.println("						<input name=\"username\" type=\"text\" value=\""+message+"\"><a href=\"toregister.user\">注册新用户</a>");
 		out.println("				");
 		out.println("				");
 		out.println("				");
@@ -119,7 +114,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("				 </td>");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"80%\">");
 		out.println("		");
-		out.println("						<input type=password>");
+		out.println("						<input name=\"password\" id= type=password>");
 		out.println("					");
 		out.println("				");
 		out.println("				");
@@ -166,6 +161,12 @@ public class userLoginServlet extends HttpServlet{
 		out.println("	</body>");
 		out.println("</html>");
 		out.close();
+	}
+
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		show(req, resp);
 	}
 
 }

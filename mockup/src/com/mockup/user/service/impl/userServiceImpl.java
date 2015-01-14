@@ -67,7 +67,7 @@ public class userServiceImpl implements userService {
 		String query="select users.userid,password,street1,street2,city,province,country,zip,email,homephone,"
 				+ "cellphone,officephone from users,contactinfo where users.userid = contactinfo.userid and users.userid = '"+userid+"';";
 		User user=null;
-		fetchUser(query, user);
+		user=fetchUser(query, user);
 		return user;
 	}
 
@@ -76,11 +76,11 @@ public class userServiceImpl implements userService {
 		String query="select users.userid,password,street1,street2,city,province,country,zip,email,homephone,cellphone,"
 				+ "officephone from users,contactinfo where users.userid = contactinfo.userid and users.userid = '"+userid+"' and password = '"+password+"';";
 		User user=null;
-		fetchUser(query, user);
+		user=fetchUser(query, user);
 		return user;
 	}
 	
-	private void fetchUser(String query, User user) {
+	private User fetchUser(String query, User user) {
 		
 		Connection conn=null;
 		Statement stmt= null;
@@ -122,5 +122,6 @@ public class userServiceImpl implements userService {
 				throw new RuntimeException("error when querying database ",e);
 			}
 		}
+		return user;
 	}
 }

@@ -57,33 +57,39 @@ public class userControllerServlet extends HttpServlet{
  			
  			
  		}
- 		else if("/dologin".equals(path)){
-		
-			String username = req.getParameter("username");			
-			String password = req.getParameter("password");
-			System.out.println("1");
-			userService userservice = new userServiceImpl();
-			User user=userservice.login(username,password);
-			System.out.println("1");
-			if(user!=null){
-				req.setAttribute("user", user);				
-				getServletContext().getRequestDispatcher("/productlist").forward(req, resp);
-			}else{
-				req.setAttribute("message", "The user was not found");
-				
-				getServletContext().getRequestDispatcher("/userlogin").forward(req, resp);
-			}
-			
- 		} else {
+ 		else{
  			resp.sendError(resp.SC_NOT_FOUND);
  		}
 		
 	}
 
+	
+
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		String path = req.getServletPath(); 		
+ 		path = path.substring(0,path.indexOf("."));
+		if("/dologin".equals(path)){
+			
+			String username = req.getParameter("username");			
+			String password = req.getParameter("password");
+			System.out.println("1");
+			System.out.println(username+password);
+			userService userservice = new userServiceImpl();
+			User user=userservice.login(username,password);
+			if(user!=null){
+				req.setAttribute("user", user);				
+				getServletContext().getRequestDispatcher("/productlist").forward(req, resp);
+			}else{
+				req.setAttribute("message", "用户名或密码错误");
+				getServletContext().getRequestDispatcher("/userlogin").forward(req, resp);
+			}
+			
+ 		} else {
+ 			resp.sendError(resp.SC_NOT_FOUND);
+ 			getServletContext().getRequestDispatcher("/error").forward(req, resp);
+ 		}
 	}
 	
 }
