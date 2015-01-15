@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import com.mockup.user.pojo.User;
 import com.mockup.user.service.userService;
 import com.mockup.user.service.impl.userServiceImpl;
-import com.mockup.util.sqlConnect;
+import com.mockup.util.ConnectionFactory;
 
 public class userModifyServlet extends HttpServlet{
 

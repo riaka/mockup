@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mockup.product.pojo.Product;
 import com.mockup.product.service.productService;
-import com.mockup.product.service.impl.productServiceimpl;
+import com.mockup.product.service.impl.productServiceImpl;
 
 public class productDetailServlet extends HttpServlet {
 

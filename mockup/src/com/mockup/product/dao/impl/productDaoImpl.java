@@ -1,24 +1,19 @@
-package com.mockup.product.service.impl;
+package com.mockup.product.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mockup.product.dao.productDao;
 import com.mockup.product.pojo.Product;
- 
-import com.mockup.product.service.productService;
-import com.mockup.util.sqlConnect;
+import com.mockup.util.ConnectionFactory;
 
-public class productServiceimpl implements productService {
-
-	
+public class productDaoImpl implements productDao {
 
 	@Override
-	public List getProductList() 
-	{
+	public List getProductList() {
 		List productList;
 		productList = new ArrayList();		
 		Connection conn = null;
@@ -27,7 +22,7 @@ public class productServiceimpl implements productService {
 
 		try 
 		{	
-			conn = sqlConnect.getConn();
+			conn = ConnectionFactory.getConn();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("select * from product");
 			
@@ -73,7 +68,7 @@ public class productServiceimpl implements productService {
 		ResultSet rs = null;
 		Product product = new Product();
 		try {	
-			conn = sqlConnect.getConn();
+			conn = ConnectionFactory.getConn();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
 			

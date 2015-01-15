@@ -13,7 +13,7 @@ import com.mockup.order.service.orderService;
 import com.mockup.order.service.impl.orderServiceImpl;
 import com.mockup.product.pojo.Product;
 import com.mockup.product.service.productService;
-import com.mockup.product.service.impl.productServiceimpl;
+import com.mockup.product.service.impl.productServiceImpl;
 import com.mockup.user.pojo.User;
 
 public class productControllerServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class productControllerServlet extends HttpServlet {
  		
  		if("/toproductlist".equals(path)){
  			try{
- 				productService productservice = new productServiceimpl();
+ 				productService productservice = new productServiceImpl();
  				
  				List productlist = productservice.getProductList();
  				
@@ -41,7 +41,7 @@ public class productControllerServlet extends HttpServlet {
 		}else if("/toproductdetail".equals(path)){
 			try{
 				productService productService;
-				productService = new productServiceimpl();
+				productService = new productServiceImpl();
 				Product product= productService.getProduct(req.getParameter("productid"));
 				req.setAttribute("product", product);
 				getServletContext().getRequestDispatcher("/productdetail").forward(req, resp);

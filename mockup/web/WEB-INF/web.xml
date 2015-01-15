@@ -134,15 +134,7 @@
   	<servlet-name>orderList</servlet-name>
   	<url-pattern>/orderlist</url-pattern>
   </servlet-mapping>
-  
-  <servlet>
-  	<servlet-name>sql</servlet-name>
-  	<servlet-class>com.mockup.mysql.sql</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>sql</servlet-name>
-  	<url-pattern>/sql</url-pattern>
-  </servlet-mapping>
+
   
   <servlet>
   	<servlet-name>error</servlet-name>
