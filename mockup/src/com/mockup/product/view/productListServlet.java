@@ -30,7 +30,7 @@ public class productListServlet extends HttpServlet {
 		List productList = (List) req.getAttribute("productlist");
 		HttpSession session=req.getSession();
 		User user=(User)session.getAttribute("user");
-		if(user==null)
+		if(user==null || !user.isLogon())
 			user=new User();
 		if(productList==null)
 			productList=new ArrayList();

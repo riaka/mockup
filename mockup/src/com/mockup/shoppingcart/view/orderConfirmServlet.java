@@ -27,7 +27,7 @@ public class orderConfirmServlet extends HttpServlet {
 		HttpSession session=req.getSession();
 		shoppingCart mycart=(shoppingCart)session.getAttribute("shoppingcart");
 		User user=(User)session.getAttribute("user");
-		if(user==null)
+		if(user==null || !user.isLogon())
 			user=new User();
 		if(mycart==null)
 			mycart=new shoppingCart();

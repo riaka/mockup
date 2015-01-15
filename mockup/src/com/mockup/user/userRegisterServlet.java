@@ -7,6 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.mockup.user.pojo.User;
 
 public class userRegisterServlet extends HttpServlet{
 
@@ -19,7 +22,31 @@ public class userRegisterServlet extends HttpServlet{
 			throws ServletException, IOException {
 		resp.setContentType("textml;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
-		
+		HttpSession session=req.getSession();
+		User user=(User)session.getAttribute("user");
+		String userid="";
+		String city="";
+		String street1="";
+		String street2="";
+		String zip="";
+		String homephone="";
+		String officephone="";
+		String cellphone="";
+		String email="";
+		if(user==null)
+			user=new User();
+		if(user.isLogon())
+		{
+			userid=user.getUserid();
+			city=user.getCity();
+			street1=user.getStreet1();
+			street2=user.getStreet2();
+			zip=user.getZip();
+			homephone=user.getHomephone();
+			officephone=user.getOfficephone();
+			cellphone=user.getCellphone();
+			email=user.getEmail();		
+		}
 		PrintWriter out=resp.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -86,8 +113,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("");
 		out.println("		</table>");
 		out.println("		<br>");
-		//out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate(this)\" action=\"doregister.user\">");
-		out.println("		<form id=\"registerform\" method=\"post\"  action=\"doregister.user\">");
+		out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate(this)\" action=\"doregister.user\">");
 		out.println("			<table class=\"tableborder1\" id=\"table1\" align=\"center\" cellpadding=\"3\" cellspacing=\"1\">");
 		out.println("			<tbody>");
 		out.println("			<tr>");
@@ -100,7 +126,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("				<td class=\"tablebody1\" width=\"40%\"><b>用户名</b>:<br>");
 		out.println("				英文字母或数字,最大长度8位</td>");
 		out.println("				<td class=\"tablebody1\" width=\"60%\">");
-		out.println("				<input maxlength=\"12\" size=\"32\" name=\"userid\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
+		out.println("				<input maxlength=\"12\" size=\"32\" name=\"userid\" value=\""+userid+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\" >");
 		out.println("				<font color=\"#ff0000\">*</font></td>");
 		out.println("");
 		out.println("			</tr>");
@@ -140,69 +166,61 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("					<option value=\"-1\">-----请选择(省)-----</option>");
 		out.println("					<option value=\"1\">安徽</option>");
 		out.println("					<option value=\"2\">北京</option>");
-		out.println("");
 		out.println("					<option value=\"3\">重庆</option>");
 		out.println("					<option value=\"4\">福建</option>");
 		out.println("					<option value=\"5\">广东</option>");
 		out.println("					<option value=\"6\">甘肃</option>");
 		out.println("					<option value=\"7\">广西</option>");
 		out.println("					<option value=\"8\">贵州</option>");
-		out.println("");
 		out.println("					<option value=\"9\">河南</option>");
 		out.println("					<option value=\"10\">湖北</option>");
 		out.println("					<option value=\"11\">河北</option>");
 		out.println("					<option value=\"12\">海南</option>");
 		out.println("					<option value=\"13\">香港</option>");
 		out.println("					<option value=\"14\">黑龙江</option>");
-		out.println("");
 		out.println("					<option value=\"15\">湖南</option>");
 		out.println("					<option value=\"16\">吉林</option>");
 		out.println("					<option value=\"17\">江苏</option>");
 		out.println("					<option value=\"18\">江西</option>");
 		out.println("					<option value=\"19\">辽宁</option>");
 		out.println("					<option value=\"20\">澳门</option>");
-		out.println("");
 		out.println("					<option value=\"21\">内蒙古</option>");
 		out.println("					<option value=\"22\">宁夏</option>");
 		out.println("					<option value=\"23\">青海</option>");
 		out.println("					<option value=\"24\">四川</option>");
 		out.println("					<option value=\"25\">山东</option>");
 		out.println("					<option value=\"26\">上海</option>");
-		out.println("");
 		out.println("					<option value=\"27\">陕西</option>");
 		out.println("					<option value=\"28\">山西</option>");
 		out.println("					<option value=\"29\">天津</option>");
 		out.println("					<option value=\"30\">台湾</option>");
 		out.println("					<option value=\"31\">新疆</option>");
 		out.println("					<option value=\"32\">西藏</option>");
-		out.println("");
 		out.println("					<option value=\"33\">云南</option>");
 		out.println("					<option value=\"34\">浙江</option>");
 		out.println("					<option value=\"35\">其它</option>");
 		out.println("				</select>");
-		out.println("				<input size=\"8\" name=\"city\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">市/区/县</td>");
+		out.println("				<input size=\"8\" name=\"city\" value=\""+city+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">市/区/县</td>");
 		out.println("			</tr>");
 		out.println("			");
 		out.println("			<tr>");
-		//out.println("");
 		out.println("				<td class=\"tablebody1\"><b>联系地址1</b>:</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input size=\"64\" maxlength=\"32\" name=\"street1\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
+		out.println("				<input size=\"64\" maxlength=\"32\" name=\"street1\" value=\""+street1+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>联系地址2</b>:</td>");
-		//out.println("");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input size=\"64\" maxlength=\"32\" name=\"street2\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
+		out.println("				<input size=\"64\" maxlength=\"32\" name=\"street2\" value=\""+street2+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>邮编</b>:</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input size=\"32\" maxlength=\"8\" name=\"zip\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
+		out.println("				<input size=\"32\" maxlength=\"8\" name=\"zip\" value=\""+zip+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
 		out.println("");
 		out.println("				</td>");
 		out.println("			</tr>");
@@ -210,7 +228,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>家庭电话</b>:</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input size=\"32\" maxlength=\"16\" name=\"homephone\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
+		out.println("				<input size=\"32\" maxlength=\"16\" name=\"homephone\" value=\""+homephone+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
 		out.println("				</td>");
 		out.println("");
 		out.println("			</tr>");
@@ -218,7 +236,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>办公室电话</b>:</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input size=\"32\" maxlength=\"16\" name=\"officephone\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
+		out.println("				<input size=\"32\" maxlength=\"16\" name=\"officephone\" value=\""+officephone+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			");
@@ -226,7 +244,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("");
 		out.println("				<td class=\"tablebody1\"><b>手机</b>:</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input size=\"32\" maxlength=\"16\" name=\"cellphone\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
+		out.println("				<input size=\"32\" maxlength=\"16\" name=\"cellphone\" value=\""+cellphone+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			");
@@ -235,7 +253,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("");
 		out.println("				请输入有效的邮件地址</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input size=\"32\" maxlength=\"50\" name=\"email\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\"></td>");
+		out.println("				<input size=\"32\" maxlength=\"50\" name=\"email\" value=\""+email+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\"></td>");
 		out.println("			</tr>");
 		out.println("			");
 		out.println("			<tr>");
