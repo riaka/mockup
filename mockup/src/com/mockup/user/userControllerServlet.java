@@ -67,9 +67,8 @@ public class userControllerServlet extends HttpServlet{
  		} 
  		else if("/doregister".equals(path))
  		{	
- 			getServletContext().getRequestDispatcher("/error").forward(req, resp);
  			User user=new User();
-			user.setUserid(req.getParameter("username"));
+			user.setUserid(req.getParameter("userid"));
 			user.setPassword(req.getParameter("password"));
 			user.setStreet1(req.getParameter("street1"));
 			user.setStreet2(req.getParameter("street2"));
@@ -81,7 +80,7 @@ public class userControllerServlet extends HttpServlet{
 			user.setHomephone(req.getParameter("homephone"));
 			user.setCellphone(req.getParameter("cellphone"));
 			user.setOfficephone(req.getParameter("officephone"));
- 			
+
  			try{					
 				Boolean flag = userservice.registerUser(user);	
 				if(flag)

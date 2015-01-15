@@ -128,7 +128,6 @@ public class userServiceImpl implements userService {
 
 	@Override
 	public Boolean registerUser(User user) {
-		
 		Connection conn=null;
 		Statement stmt= null;
 		ResultSet result=null;
@@ -142,7 +141,9 @@ public class userServiceImpl implements userService {
 			//表明已有人注册
 			while(result.next())
 			{
-				if(user.getUserid().equals(result.toString().trim()))
+				System.out.println(result.getString("userid"));
+				System.out.println(user.getUserid());
+				if(user.getUserid().equals(result.getString("userid").trim()))
 				{
 					flag = false;
 					break;

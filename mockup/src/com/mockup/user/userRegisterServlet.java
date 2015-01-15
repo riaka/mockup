@@ -184,7 +184,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("			</tr>");
 		out.println("			");
 		out.println("			<tr>");
-		out.println("");
+		//out.println("");
 		out.println("				<td class=\"tablebody1\"><b>联系地址1</b>:</td>");
 		out.println("				<td class=\"tablebody1\">");
 		out.println("				<input size=\"64\" maxlength=\"32\" name=\"street1\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
@@ -193,7 +193,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("			");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>联系地址2</b>:</td>");
-		out.println("");
+		//out.println("");
 		out.println("				<td class=\"tablebody1\">");
 		out.println("				<input size=\"64\" maxlength=\"32\" name=\"street2\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\">");
 		out.println("				</td>");
