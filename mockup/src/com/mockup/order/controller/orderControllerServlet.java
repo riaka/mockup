@@ -1,4 +1,4 @@
-package com.mockup.order;
+package com.mockup.order.controller;
 
 import java.io.IOException;
 import java.util.List;

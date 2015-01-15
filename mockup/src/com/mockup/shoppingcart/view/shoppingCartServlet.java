@@ -1,4 +1,4 @@
-package com.mockup.shoppingcart;
+package com.mockup.shoppingcart.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;

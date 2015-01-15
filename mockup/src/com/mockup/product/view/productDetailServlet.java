@@ -1,4 +1,4 @@
-package com.mockup.product;
+package com.mockup.product.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +23,15 @@ public class productDetailServlet extends HttpServlet {
 		PrintWriter out=resp.getWriter();
 		///product详细
 		Product product= (Product)req.getAttribute("product");
-	
+		String productname=product.getName();
+		String author=product.getAuthor();
+		String baseprice=product.getBasePrice();
+		String publish=product.getPublish();
+		String productid=product.getProductid();
+		String pages=product.getPages();
+		String productclass=product.getCategoryid();
+		String description=product.getDescription();
+		String images=product.getImages();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
 		out.println("	<head>");
@@ -95,7 +103,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td  colspan=\"2\" valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"100%\">");
 		out.println("					<font color=\"#ffffff\">");
-		out.println("						<b>"+product.getName()+"</b>");
+		out.println("						<b>"+productname+"</b>");
 		out.println("					</font>");
 		out.println("				</td>");
 		out.println("			</tr>");
@@ -105,7 +113,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+product.getAuthor());
+		out.println("				"+author);
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -114,7 +122,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+product.getBasePrice());
+		out.println("				"+baseprice);
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -123,7 +131,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+product.getPublish());
+		out.println("				"+publish);
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -132,7 +140,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+product.getProductid());
+		out.println("				"+productid);
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -141,7 +149,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+product.getPages());
+		out.println("				"+pages);
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -150,7 +158,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+product.getClass()+":<br>");
+		out.println("				"+productclass+":<br>");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -159,7 +167,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+product.getDescription());
+		out.println("				"+description);
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -169,13 +177,13 @@ public class productDetailServlet extends HttpServlet {
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
 		out.println("				&nbsp");
-		out.println("				<img src=\""+product.getImages()+"\">");
+		out.println("				<img src=\""+images+"\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			");
 		out.println("			<tr>");
 		out.println("			<td colspan=\"2\" class=tablebody2 valign=\"top\" align=\"center\" width=\"100%\" height=\"32\"> ");
-		out.println("				<a href=\"addtoshoppingcart.cart?productid="+product.getProductid()+"\"><img border=\"0\" src=\"images/buycar.gif\" ></a> ");
+		out.println("				<a href=\"addtoshoppingcart.cart?productid="+productid+"\"><img border=\"0\" src=\"images/buycar.gif\" ></a> ");
 		out.println("    		</td>");
 		out.println("    		</tr>");
 		out.println("			");

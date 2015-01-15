@@ -1,4 +1,4 @@
-package com.mockup.order;
+package com.mockup.order.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,6 +33,18 @@ public class orderDetailServlet extends HttpServlet{
 		User me =(User) session.getAttribute("user");
 		if(me==null)
 			me=new User();
+		String userid=me.getUserid();
+		String userstreet1=me.getStreet1();
+		String userzip=me.getZip();
+		String homephone=me.getHomephone();
+		String officephone=me.getOfficephone();
+		String cellphone=me.getCellphone();
+		String email=me.getEmail();
+		
+		String paystyle=orderdetail.getPayStyle();
+		double amount=0;
+		orderLine orderline;
+		
 		PrintWriter out =resp.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -113,7 +125,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				");
 		out.println("    			<td class=tablebody1 valign=\"middle\" width=\"60%\"> ");
-		out.println("    			"+me.getUserid());
+		out.println("    			"+userid);
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -122,7 +134,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				");
 		out.println("    			<td class=tablebody1 valign=\"middle\" width=\"60%\"> ");
-		out.println("    			"+me.getStreet1());
+		out.println("    			"+userstreet1);
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -131,7 +143,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				");
 		out.println("    			<td class=tablebody1 valign=\"middle\" width=\"60%\"> ");
-		out.println("    			"+me.getZip());
+		out.println("    			"+userzip);
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -140,7 +152,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				");
 		out.println("    			<td class=tablebody1 valign=\"middle\" width=\"60%\"> ");
-		out.println("    			"+me.getHomephone());
+		out.println("    			"+homephone);
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -149,7 +161,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				");
 		out.println("    			<td class=tablebody1 valign=\"middle\" width=\"60%\"> ");
-		out.println("    			"+me.getOfficephone());
+		out.println("    			"+officephone);
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -158,7 +170,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				");
 		out.println("    			<td class=tablebody1 valign=\"middle\" width=\"60%\"> ");
-		out.println("    			"+me.getCellphone());
+		out.println("    			"+cellphone);
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -167,7 +179,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				");
 		out.println("    			<td class=tablebody1 valign=\"middle\" width=\"60%\"> ");
-		out.println("    			"+me.getEmail());
+		out.println("    			"+email);
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("			");
@@ -188,7 +200,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				");
 		out.println("    			<td class=tablebody1 valign=\"middle\" width=\"60%\"> ");
-		out.println("    			"+orderdetail.getPayStyle());
+		out.println("    			"+paystyle);
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("		");
@@ -205,10 +217,10 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			");
-		double amount=0;
+		
 		for (Iterator<orderLine> orderlines = orderdetail.getOrderlines().iterator();orderlines.hasNext();) 
 		{
-			orderLine orderline=orderlines.next();
+			orderline=orderlines.next();
 			out.println("			<tr>");
 			out.println("				<td class=tablebody2 valign=\"middle\"  align=\"center\" width=\"3%\">");
 			out.println("					1");

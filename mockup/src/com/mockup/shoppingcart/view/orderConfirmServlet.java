@@ -1,4 +1,4 @@
-package com.mockup.shoppingcart;
+package com.mockup.shoppingcart.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +31,17 @@ public class orderConfirmServlet extends HttpServlet {
 			user=new User();
 		if(mycart==null)
 			mycart=new shoppingCart();
-		PrintWriter out = resp.getWriter();
+		String userid=user.getUserid();
+		String userstreet1=user.getStreet1();
+		String zip=user.getZip();
+		String homephone=user.getHomephone();
+		String officephone=user.getOfficephone();
+		String cellphone=user.getCellphone();
+		String email=user.getEmail();
+		
+		Product product;
+		
+		PrintWriter out = resp.getWriter();	
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
 		out.println("	<head>");
@@ -110,31 +120,31 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 valign=\"middle\" align=\"right\" width=\"40%\">用户名&nbsp:&nbsp</td>");
-		out.println("				<td class=tablebody1>"+user.getUserid()+"</td>");
+		out.println("				<td class=tablebody1>"+userid+"</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 align=\"right\">联系地址&nbsp:&nbsp</td>");
-		out.println("				<td class=tablebody1>"+user.getStreet1()+"</td>");
+		out.println("				<td class=tablebody1>"+userstreet1+"</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 align=\"right\">邮编&nbsp:&nbsp</td>");
-		out.println("				<td class=tablebody1>"+user.getZip()+"</td>");
+		out.println("				<td class=tablebody1>"+zip+"</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 align=\"right\">家庭电话&nbsp:&nbsp</td>");
-		out.println("				<td class=tablebody1>"+user.getHomephone()+"</td>");
+		out.println("				<td class=tablebody1>"+homephone+"</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 align=\"right\">办公室电话&nbsp:&nbsp</td>");
-		out.println("				<td class=tablebody1>"+user.getOfficephone()+"</td>");
+		out.println("				<td class=tablebody1>"+officephone+"</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 align=\"right\">手机&nbsp:&nbsp</td>");
-		out.println("				<td class=tablebody1>"+user.getCellphone()+"</td>");
+		out.println("				<td class=tablebody1>"+cellphone+"</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 align=\"right\">Email地址&nbsp:&nbsp</td>");
-		out.println("				<td class=tablebody1>"+user.getEmail()+"</td>");
+		out.println("				<td class=tablebody1>"+email+"</td>");
 		out.println("			</tr>");
 		out.println("		</table>		");
 		out.println("		");
@@ -173,7 +183,7 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("					<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='toshoppingcart.cart';\" >");
 		out.println("				</td>");
 		out.println("			</tr>");
-		Product product;
+		
 		for(Iterator<Product> products =mycart.getProducts().iterator();products.hasNext();)
 		{
 			product=products.next();

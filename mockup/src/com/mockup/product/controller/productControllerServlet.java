@@ -1,4 +1,4 @@
-package com.mockup.product;
+package com.mockup.product.controller;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.mockup.product;
+package com.mockup.product.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,6 +34,8 @@ public class productListServlet extends HttpServlet {
 			user=new User();
 		if(productList==null)
 			productList=new ArrayList();
+		String userid=user.getUserid();
+		Product product;
 		PrintWriter out=resp.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -88,7 +90,7 @@ public class productListServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=index.jsp>达内电子商务门户</a> →<img border=\"0\" src=\"images/dog.gif\" width=\"19\" height=\"18\">欢迎<font color=\"red\">"+user.getUserid()+"</font>光临！");
+		out.println("					<a href=index.jsp>达内电子商务门户</a> →<img border=\"0\" src=\"images/dog.gif\" width=\"19\" height=\"18\">欢迎<font color=\"red\">"+userid+"</font>光临！");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");
@@ -117,7 +119,7 @@ public class productListServlet extends HttpServlet {
 		out.println("				</td>");
 		out.println("			</tr>");
 		 
- 		Product product;
+ 		
 		for(int i=0;i<productList.size();i++)
 		{
 			product=(Product)productList.get(i);

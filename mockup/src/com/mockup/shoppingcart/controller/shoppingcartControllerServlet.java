@@ -1,4 +1,4 @@
-package com.mockup.shoppingcart;
+package com.mockup.shoppingcart.controller;
 
 import java.io.IOException;
 import java.util.List;

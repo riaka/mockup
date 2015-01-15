@@ -10,8 +10,17 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
+  	<servlet-name>CartController</servlet-name>
+  	<servlet-class>com.mockup.shoppingcart.controller.shoppingcartControllerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CartController</servlet-name>
+  	<url-pattern>*.cart</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>orderController</servlet-name>
-  	<servlet-class>com.mockup.order.orderControllerServlet</servlet-class>
+  	<servlet-class>com.mockup.order.controller.orderControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>orderController</servlet-name>
@@ -20,7 +29,7 @@
    
    <servlet>
   	<servlet-name>productController</servlet-name>
-  	<servlet-class>com.mockup.product.productControllerServlet</servlet-class>
+  	<servlet-class>com.mockup.product.controller.productControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>productController</servlet-name>
@@ -74,7 +83,7 @@
   
   <servlet>
   	<servlet-name>shoppingCart</servlet-name>
-  	<servlet-class>com.mockup.shoppingcart.shoppingCartServlet</servlet-class>
+  	<servlet-class>com.mockup.shoppingcart.viewshoppingCartServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>shoppingCart</servlet-name>
@@ -83,7 +92,7 @@
   
   <servlet>
   	<servlet-name>orderConfirm</servlet-name>
-  	<servlet-class>com.mockup.shoppingcart.orderConfirmServlet</servlet-class>
+  	<servlet-class>com.mockup.shoppingcart.view.orderConfirmServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>orderConfirm</servlet-name>
@@ -92,7 +101,7 @@
   
   <servlet>
   	<servlet-name>productDetail</servlet-name>
-  	<servlet-class>com.mockup.product.productDetailServlet</servlet-class>
+  	<servlet-class>com.mockup.product.view.productDetailServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>productDetail</servlet-name>
@@ -101,7 +110,7 @@
   
    <servlet>
   	<servlet-name>productList</servlet-name>
-  	<servlet-class>com.mockup.product.productListServlet</servlet-class>
+  	<servlet-class>com.mockup.product.view.productListServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>productList</servlet-name>
@@ -110,7 +119,7 @@
   
   <servlet>
   	<servlet-name>orderDetail</servlet-name>
-  	<servlet-class>com.mockup.order.orderDetailServlet</servlet-class>
+  	<servlet-class>com.mockup.order.view.orderDetailServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>orderDetail</servlet-name>
@@ -119,7 +128,7 @@
   
     <servlet>
   	<servlet-name>orderList</servlet-name>
-  	<servlet-class>com.mockup.order.orderListServlet</servlet-class>
+  	<servlet-class>com.mockup.order.view.orderListServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>orderList</servlet-name>

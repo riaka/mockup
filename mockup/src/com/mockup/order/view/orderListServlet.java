@@ -1,4 +1,4 @@
-package com.mockup.order;
+package com.mockup.order.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,6 +24,8 @@ public class orderListServlet extends HttpServlet {
 		List<order> orderlist=(List)req.getAttribute("orderlist");
 		if(orderlist==null)
 			orderlist=new ArrayList();
+		order order;
+		
 		PrintWriter out =resp.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -92,7 +94,7 @@ public class orderListServlet extends HttpServlet {
 		out.println("			</tr>");
 		
 		//订单表		
-		order order;
+		
 		for(int i=0;i<orderlist.size();i++){
 			
 			 order=orderlist.get(i);
