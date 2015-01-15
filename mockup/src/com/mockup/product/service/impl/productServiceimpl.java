@@ -7,10 +7,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mockup.mysql.sqlConnect;
 import com.mockup.product.pojo.Product;
  
 import com.mockup.product.service.productService;
+import com.mockup.util.sqlConnect;
 
 public class productServiceimpl implements productService {
 

@@ -1,4 +1,4 @@
-package com.mockup.user;
+package com.mockup.user.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,7 +36,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
 		out.println("		<meta name=\"description\" content=\"达内电子商务门户\">");
 		out.println("		<link href=\"css/tarena.css\" rel=stylesheet>");
-		out.println("              <script language=\"javascript\" src=\"js/loginvalidate.js\">");
+		out.println("              <script language=\"javascript\" src=\"../../js/loginvalidate.js\">");
 		out.println("	       </script>");
 		out.println("	</head>");
 		out.println("	<body topmargin=\"0\" leftmargin=\"0\" rightmargin=\"0\" bottommargin=\"0\">");
@@ -89,7 +89,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("			</tr>");
 		out.println("		</table>");
 		out.println("		<br>");
-		out.println("		<form id=\"loginform\" method=\"post\" onsubmit=\"return loginvalidate(this)\" action=\"dologin.user\">");
+		out.println("		<form id=\"loginform\" method=\"post\" onsubmit=\"return loginvalidate()\" action=\"dologin.user\">");
 		out.println("		<table cellpadding=\"3\" cellspacing=\"1\" align=\"center\" class=\"tableborder1\">");
 		out.println("			<tr>");
 		out.println("				<td colspan=\"4\" valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"50\">");

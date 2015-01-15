@@ -124,12 +124,12 @@ public class shoppingCartServlet extends HttpServlet {
 			product=products.next();
 			out.println("			<tr>");
 			out.println("				<td class=tablebody2 valign=\"middle\" align=\"center\" width=\"8%\">");
-			out.println("					"+i++);
+			out.println("					"+i);
 			out.println("				</td>");
 			out.println("				<td class=tablebody1 valign=\"middle\" align=\"center\" width=\"44%\">");
 			out.println("					"+product.getName());
 			out.println("				</td>");
-			out.println("				<td class=tablebody2 valign=\"middle\" align=\"center\" width=\"8%\">");
+			out.println("				<td class=tablebody2 id=valign=\"middle\" align=\"center\" width=\"8%\">");
 			out.println("					"+product.getBasePrice());
 			out.println("				</td>");
 			out.println("				<td class=tablebody1 valign=\"middle\" align=\"center\" width=\"8%\">");

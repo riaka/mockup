@@ -1,4 +1,4 @@
-package com.mockup.user;
+package com.mockup.user.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,12 +17,14 @@ public class userControllerServlet extends HttpServlet{
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+			throws ServletException, IOException 
+	{
 		String path = req.getServletPath(); 		
  		path = path.substring(0,path.indexOf("."));
  		HttpSession session=req.getSession();
  		userService userservice = new userServiceImpl();
- 		if("/tousermanage".equals(path)){
+ 		if("/tousermanage".equals(path))
+ 		{
  			User user=(User)session.getAttribute("user");
  			if(user==null)
  			{
@@ -32,11 +34,13 @@ public class userControllerServlet extends HttpServlet{
  			}
  			else if(user.getUserid().equals(User.ADMIN))
  			{
- 				try{
+ 				try
+ 				{
  					List<User> users=userservice.getUserList();					
  					req.setAttribute("users", users);				
  					getServletContext().getRequestDispatcher("/usermanage").forward(req, resp);				
- 				} catch (Exception e){
+ 				} catch (Exception e)
+ 				{
  					req.setAttribute("errormessage", e.getMessage());		
  					getServletContext().getRequestDispatcher("/error").forward(req, resp);
  				}
@@ -46,21 +50,26 @@ public class userControllerServlet extends HttpServlet{
  				getServletContext().getRequestDispatcher("/usermodify").forward(req, resp);
  			}
  		}
- 		else if("/tologin".equals(path)){
+ 		else if("/tologin".equals(path))
+ 		{
  			getServletContext().getRequestDispatcher("/userlogin").forward(req, resp);		
  		}
- 		else if("/toregister".equals(path)){
+ 		else if("/toregister".equals(path))
+ 		{
  			getServletContext().getRequestDispatcher("/userregister").forward(req, resp);
  		}
- 		else if("/dologin".equals(path)){
+ 		else if("/dologin".equals(path))
+ 		{
 			String username = req.getParameter("username");			
 			String password = req.getParameter("password");
 			
 			User user=userservice.login(username,password);
 			session.setAttribute("user", user);
-			if(user.isLogon()){
+			if(user.isLogon())
+			{
 				resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/toproductlist.product");
-			}else{
+			}else
+			{
 				session.setAttribute("message", "用户名或密码错误");
  				resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/touserlogin.user");
  				session.removeAttribute("message");
@@ -90,16 +99,19 @@ public class userControllerServlet extends HttpServlet{
 				{				
 					resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/toproductlist.product");
 				}
-				else{
+				else
+				{
 					resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/toregister.user");
 					session.removeAttribute("user");
 				}
-			} catch (Exception e){
+			} catch (Exception e)
+ 			{
 				req.setAttribute("errormessage", e.getMessage());		
 				getServletContext().getRequestDispatcher("/error").forward(req, resp);
 			}
  		}
-		else {
+ 		else
+ 		{
  			resp.sendError(resp.SC_NOT_FOUND);
  			getServletContext().getRequestDispatcher("/error").forward(req, resp);
  		}

@@ -1,4 +1,4 @@
-package com.mockup.user;
+package com.mockup.user.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mockup.mysql.sqlConnect;
 import com.mockup.user.pojo.User;
 import com.mockup.user.service.userService;
 import com.mockup.user.service.impl.userServiceImpl;
+import com.mockup.util.sqlConnect;
 
 public class userModifyServlet extends HttpServlet{
 

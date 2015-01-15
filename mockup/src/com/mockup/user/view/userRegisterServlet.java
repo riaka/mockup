@@ -1,4 +1,4 @@
-package com.mockup.user;
+package com.mockup.user.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,8 +13,10 @@ import com.mockup.user.pojo.User;
 
 public class userRegisterServlet extends HttpServlet{
 
-	public userRegisterServlet() {
-		// TODO Auto-generated constructor stub
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		this.doGet(req, resp);
 	}
 
 	@Override
@@ -55,7 +57,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 		out.println("		<meta name=\"description\" content=\"达内电子商务门户\">");
 		out.println("		<link href=\"css/tarena.css\" rel=stylesheet>");
-		out.println("		<script language=\"javascript\" src=\"uservalidate.js\">");
+		out.println("		<script language=\"javascript\" src=\"../../js/uservalidate.js\">");
 		out.println("	       </script>");
 		out.println("	</head>");
 		out.println("	<body topmargin=\"0\" leftmargin=\"0\" rightmargin=\"0\" bottommargin=\"0\">");
@@ -113,7 +115,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("");
 		out.println("		</table>");
 		out.println("		<br>");
-		out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate(this)\" action=\"doregister.user\">");
+		out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate()\" action=\"doregister.user\">");
 		out.println("			<table class=\"tableborder1\" id=\"table1\" align=\"center\" cellpadding=\"3\" cellspacing=\"1\">");
 		out.println("			<tbody>");
 		out.println("			<tr>");
@@ -127,7 +129,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("				英文字母或数字,最大长度8位</td>");
 		out.println("				<td class=\"tablebody1\" width=\"60%\">");
 		out.println("				<input maxlength=\"12\" size=\"32\" name=\"userid\" value=\""+userid+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"text\" >");
-		out.println("				<font color=\"#ff0000\">*</font></td>");
+		out.println("				<font color=\"#ff0000\">*</font><b id=\"b1\"></b></td>");
 		out.println("");
 		out.println("			</tr>");
 		out.println("			");
@@ -137,7 +139,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				<td class=\"tablebody1\" width=\"60%\">");
 		out.println("				<input maxlength=\"12\" size=\"32\" name=\"password\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"password\">");
-		out.println("				<font color=\"#ff0000\">*</font></td>");
+		out.println("				<font color=\"#ff0000\">*</font><b id=\"b2\"></b></td>");
 		out.println("");
 		out.println("			</tr>");
 		out.println("			");
@@ -147,7 +149,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				<td class=\"tablebody1\">");
 		out.println("				<input maxlength=\"12\" size=\"32\" name=\"password2\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\" type=\"password\">");
-		out.println("				<font color=\"#ff0000\">*</font></td>");
+		out.println("				<font color=\"#ff0000\">*</font><b id=\"b3\"></b></td>");
 		out.println("");
 		out.println("			</tr>");
 		out.println("			");
@@ -253,7 +255,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("");
 		out.println("				请输入有效的邮件地址</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input size=\"32\" maxlength=\"50\" name=\"email\" value=\""+email+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\"></td>");
+		out.println("				<input size=\"32\" maxlength=\"50\" name=\"email\" value=\""+email+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: rgb(0, 0, 0);\"><b id=\"b4\"></b></td>");
 		out.println("			</tr>");
 		out.println("			");
 		out.println("			<tr>");

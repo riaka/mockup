@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.mockup.mysql.sqlConnect;
 import com.mockup.user.pojo.User;
 import com.mockup.user.service.userService;
+import com.mockup.util.sqlConnect;
 
 public class userServiceImpl implements userService {
 

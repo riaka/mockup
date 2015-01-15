@@ -1,4 +1,4 @@
-package com.mockup.user;
+package com.mockup.user.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;

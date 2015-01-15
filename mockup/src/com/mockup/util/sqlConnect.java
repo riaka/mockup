@@ -1,4 +1,4 @@
-package com.mockup.mysql;
+package com.mockup.util;
 
 
 import java.sql.Connection;

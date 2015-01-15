@@ -7,11 +7,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mockup.mysql.sqlConnect;
 import com.mockup.order.pojo.order;
 import com.mockup.order.pojo.orderDetail;
 import com.mockup.order.pojo.orderLine;
 import com.mockup.order.service.orderService;
+import com.mockup.util.sqlConnect;
 
 public class orderServiceImpl implements orderService{
 

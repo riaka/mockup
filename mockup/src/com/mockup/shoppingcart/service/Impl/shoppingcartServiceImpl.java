@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.mockup.mysql.sqlConnect;
 import com.mockup.product.pojo.Product;
 import com.mockup.shoppingcart.pojo.shoppingCart;
 import com.mockup.shoppingcart.service.shoppingcartService;
+import com.mockup.util.sqlConnect;
 
 public class shoppingcartServiceImpl implements shoppingcartService {
 
