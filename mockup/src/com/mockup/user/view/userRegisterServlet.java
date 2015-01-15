@@ -261,8 +261,8 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody2\" colspan=\"2\" align=\"center\" valign=\"middle\">");
 		out.println("				<input type=\"submit\" value=\"注册\">&nbsp;&nbsp;");
-		out.println("				<a href=\"doregister.user\">注册</td>");
-		//out.println("				<input value=\"清 除\" type=\"reset\"></td>");
+		//out.println("				<a href=\"doregister.user\">注册</td>");
+		out.println("				<input value=\"清 除\" type=\"reset\"></td>");
 		out.println("");
 		out.println("			</tr>");
 		out.println("			</tbody>");

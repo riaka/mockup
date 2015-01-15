@@ -83,7 +83,7 @@
   
   <servlet>
   	<servlet-name>shoppingCart</servlet-name>
-  	<servlet-class>com.mockup.shoppingcart.viewshoppingCartServlet</servlet-class>
+  	<servlet-class>com.mockup.shoppingcart.view.shoppingCartServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>shoppingCart</servlet-name>
