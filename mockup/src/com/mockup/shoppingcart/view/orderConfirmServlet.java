@@ -207,7 +207,7 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td width=\"65%\" align=\"center\">");
 		out.println("					<b>请认真检查以上订单信息，确认无误后，点击&nbsp;→</b>");
-		out.println("					<a href=\"toorderlist.order\"><img border=\"0\" src=\"images/submit.gif\"></a>");
+		out.println("					<a href=\"addorder.order\"><img border=\"0\" src=\"images/submit.gif\"></a>");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");

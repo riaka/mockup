@@ -50,7 +50,11 @@ public class orderControllerServlet extends HttpServlet {
 				req.setAttribute("errormessage", e.getMessage());
 				getServletContext().getRequestDispatcher("/error").forward(req, resp);
 			}			
-		} else 	
+		} 
+		else if("/addorder".equals(path)){
+		
+		}
+			else 	
  		 {
 			req.setAttribute("errormessage","message");
 			getServletContext().getRequestDispatcher("/error").forward(req, resp);
