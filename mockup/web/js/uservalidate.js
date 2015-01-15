@@ -68,9 +68,10 @@ function validate(){
 	{
 		var emailvalue=email.value;
 		//验证邮件地址中有且仅有一个.和一个@
-		if(emailvalue.indexOf(".")==-1||emailvalue.indexOf(".")!=emailvalue.lastIndexOf(".")||emailvalue.indexOf("@")==-1||emailvalue.indexOf("@")!
-
-=emailvalue.lastIndexOf("@"))
+		if (emailvalue.indexOf(".") == -1
+				|| emailvalue.indexOf(".") != emailvalue.lastIndexOf(".")
+				|| emailvalue.indexOf("@") == -1
+				|| emailvalue.indexOf("@") != emailvalue.lastIndexOf("@"))
 		{
 			b4.innerHTML="邮件地址不合法";
 			email.focus();
