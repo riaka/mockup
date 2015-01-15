@@ -96,7 +96,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("				 </td>");
 		out.println("				<td class=tablebody1 valign=\"middle\" height=\"20\" width=\"80%\">");
 		out.println("					");
-		out.println("						<input name=\"username\" type=\"text\" value=\""+message+"\"><a href=\"toregister.user\">注册新用户</a>");
+		out.println("						<input name=\"username\" id=\"userName\" type=\"text\" value=\""+message+"\"><a href=\"toregister.user\">注册新用户</a><label id=\"p1\"></lable>");
 		out.println("				");
 		out.println("				");
 		out.println("				");
@@ -109,7 +109,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("				 </td>");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"80%\">");
 		out.println("		");
-		out.println("						<input name=\"password\" id= type=password>");
+		out.println("						<input name=\"password\" id=\"password\" type=password><label id=\"p2\"></lable>");
 		out.println("					");
 		out.println("				");
 		out.println("				");
