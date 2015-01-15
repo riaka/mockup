@@ -26,7 +26,7 @@ public class shoppingcartControllerServlet extends HttpServlet{
  		path = path.substring(0,path.indexOf("."));
  		HttpSession session=req.getSession();
  		User user=(User)session.getAttribute("user");
-		if(user==null)
+		if(user==null || !user.isLogon())
 		{
 			req.setAttribute("message", "请先登录");
 			getServletContext().getRequestDispatcher("/userlogin").forward(req, resp);

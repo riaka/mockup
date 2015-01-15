@@ -26,8 +26,9 @@ public class userControllerServlet extends HttpServlet{
  			User user=(User)session.getAttribute("user");
  			if(user==null)
  			{
- 				req.setAttribute("message", "请先登录");
- 				getServletContext().getRequestDispatcher("/userlogin").forward(req, resp);
+ 				session.setAttribute("message", "请先登录");
+ 				resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/touserlogin.user");
+ 				session.removeAttribute("message");
  			}
  			else if(user.getUserid().equals(User.ADMIN))
  			{
@@ -56,12 +57,13 @@ public class userControllerServlet extends HttpServlet{
 			String password = req.getParameter("password");
 			
 			User user=userservice.login(username,password);
-			if(user!=null){
-				session.setAttribute("user", user);		
-				getServletContext().getRequestDispatcher("/toproductlist.product").forward(req, resp);
+			session.setAttribute("user", user);
+			if(user.isLogon()){
+				resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/toproductlist.product");
 			}else{
-				req.setAttribute("message", "用户名或密码错误");
-				getServletContext().getRequestDispatcher("/userlogin").forward(req, resp);
+				session.setAttribute("message", "用户名或密码错误");
+ 				resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/touserlogin.user");
+ 				session.removeAttribute("message");
 			}
 			
  		} 
@@ -70,9 +72,9 @@ public class userControllerServlet extends HttpServlet{
  			User user=new User();
 			user.setUserid(req.getParameter("userid"));
 			user.setPassword(req.getParameter("password"));
-			user.setStreet1(req.getParameter("street1"));
-			user.setStreet2(req.getParameter("street2"));
-			user.setCity(req.getParameter("city"));
+			user.setStreet1(new String(req.getParameter("street1").getBytes("ISO-8859-1"),"UTF-8"));
+			user.setStreet2(new String(req.getParameter("street2").getBytes("ISO-8859-1"),"UTF-8"));
+			user.setCity(new String(req.getParameter("city").getBytes("ISO-8859-1"),"UTF-8"));
 			user.setProvince(req.getParameter("province"));
 			user.setCountry(req.getParameter("country"));
 			user.setZip(req.getParameter("zip"));
@@ -82,15 +84,15 @@ public class userControllerServlet extends HttpServlet{
 			user.setOfficephone(req.getParameter("officephone"));
 
  			try{					
-				Boolean flag = userservice.registerUser(user);	
+				Boolean flag = userservice.registerUser(user);
+				session.setAttribute("user", user);
 				if(flag)
-				{
-					session.setAttribute("user", user);
-					System.out.println("注册成功");
-					getServletContext().getRequestDispatcher("/toproductlist.product").forward(req, resp);
+				{				
+					resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/toproductlist.product");
 				}
 				else{
-					getServletContext().getRequestDispatcher("/userregister").forward(req, resp);
+					resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/toregister.user");
+					session.removeAttribute("user");
 				}
 			} catch (Exception e){
 				req.setAttribute("errormessage", e.getMessage());		

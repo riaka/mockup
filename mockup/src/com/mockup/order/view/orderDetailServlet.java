@@ -30,16 +30,16 @@ public class orderDetailServlet extends HttpServlet{
 		orderDetail orderdetail=(orderDetail) req.getAttribute("orderdetail");
 		if(orderdetail==null)
 			orderdetail=new orderDetail();
-		User me =(User) session.getAttribute("user");
-		if(me==null)
-			me=new User();
-		String userid=me.getUserid();
-		String userstreet1=me.getStreet1();
-		String userzip=me.getZip();
-		String homephone=me.getHomephone();
-		String officephone=me.getOfficephone();
-		String cellphone=me.getCellphone();
-		String email=me.getEmail();
+		User user =(User) session.getAttribute("user");
+		if(user==null || !user.isLogon())
+			user=new User();
+		String userid=user.getUserid();
+		String userstreet1=user.getStreet1();
+		String userzip=user.getZip();
+		String houserphone=user.getHomephone();
+		String officephone=user.getOfficephone();
+		String cellphone=user.getCellphone();
+		String email=user.getEmail();
 		
 		String paystyle=orderdetail.getPayStyle();
 		double amount=0;
@@ -51,8 +51,8 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("	<head>");
 		out.println("		<title>达内电子商务门户</title>");
 		
-		out.println("		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
-		out.println("		<meta name=\"description\" content=\"达内电子商务门户\">");
+		out.println("		<userta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+		out.println("		<userta nauser=\"description\" content=\"达内电子商务门户\">");
 		out.println("		<link href=\"css/tarena.css\" rel=stylesheet>");
 		out.println("	</head>");
 		out.println("	<body topmargin=\"0\" leftmargin=\"0\" rightmargin=\"0\" bottommargin=\"0\">");
@@ -73,15 +73,15 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          					<td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          					<td width=\"10%\"><a href=\"toproductlist.product\"><img nauser=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("							<td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"tousermanage.user\"><img nauser=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"toshoppingcart.cart\"><img nauser=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"toorderlist.order\"><img nauser=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"toproductlist.product\"><img nauser=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -152,7 +152,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				</td>");
 		out.println("				");
 		out.println("    			<td class=tablebody1 valign=\"middle\" width=\"60%\"> ");
-		out.println("    			"+homephone);
+		out.println("    			"+houserphone);
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");

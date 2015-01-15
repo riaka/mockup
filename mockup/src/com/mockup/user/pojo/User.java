@@ -6,7 +6,23 @@ public class User {
 	private String userid="";
 	private String password="";
 	private UserInformation info=new UserInformation();
-	
+	private boolean logon=false;
+	public UserInformation getInfo() {
+		return info;
+	}
+
+	public void setInfo(UserInformation info) {
+		this.info = info;
+	}
+
+	public boolean isLogon() {
+		return logon;
+	}
+
+	public void setLogon(boolean status) {
+		this.logon = status;
+	}
+
 	public User(){};
 	
 	public String getPassword() {

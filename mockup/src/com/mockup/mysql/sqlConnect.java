@@ -17,7 +17,7 @@ public class sqlConnect {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String url="jdbc:mysql://localhost:3306/gwap";
+			String url="jdbc:mysql://localhost:3306/gwap?useUnicode=true&characterEncoding=utf-8";
 			String username="root";
 			String password="";
 			conn=DriverManager.getConnection(url,username,password);

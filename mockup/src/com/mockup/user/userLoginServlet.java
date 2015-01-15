@@ -7,6 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.mockup.user.pojo.User;
 
 public class userLoginServlet extends HttpServlet{
 
@@ -15,9 +18,15 @@ public class userLoginServlet extends HttpServlet{
 			throws ServletException, IOException {	
 		resp.setContentType("textml;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
-		String message=(String)req.getAttribute("message");
+		HttpSession session=req.getSession();
+		User user=(User)session.getAttribute("user");
+		if(user==null)
+			user=new User();
+		String message=(String)session.getAttribute("message");
 		if(message==null)
 			message="";
+		String userid=user.getUserid();
+		String password=user.getPassword();
 		PrintWriter out = resp.getWriter();
 		
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
@@ -96,7 +105,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("				 </td>");
 		out.println("				<td class=tablebody1 valign=\"middle\" height=\"20\" width=\"80%\">");
 		out.println("					");
-		out.println("						<input name=\"username\" id=\"userName\" type=\"text\" value=\""+message+"\"><a href=\"toregister.user\">注册新用户</a><label id=\"p1\"></lable>");
+		out.println("						<input name=\"username\" id=\"userName\" type=\"text\" value=\""+userid+"\"><a href=\"toregister.user\">注册新用户</a><label id=\"p1\"></lable>");
 		out.println("				");
 		out.println("				");
 		out.println("				");
@@ -109,7 +118,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("				 </td>");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"80%\">");
 		out.println("		");
-		out.println("						<input name=\"password\" id=\"password\" type=password><label id=\"p2\"></lable>");
+		out.println("						<input name=\"password\" id=\"password\" type=\"password\" value=\""+password+"\"><label id=\"p2\"></lable>");
 		out.println("					");
 		out.println("				");
 		out.println("				");

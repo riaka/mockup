@@ -67,8 +67,9 @@ public class userServiceImpl implements userService {
 	public User getCertainUser(String userid) {
 		String query="select users.userid,password,street1,street2,city,province,country,zip,email,homephone,"
 				+ "cellphone,officephone from users,contactinfo where users.userid = contactinfo.userid and users.userid = '"+userid+"';";
-		User user=null;
-		user=fetchUser(query, user);
+		User user=new User();
+		user.setUserid(userid);
+		fetchUser(query, user);
 		return user;
 	}
 
@@ -76,12 +77,14 @@ public class userServiceImpl implements userService {
 	public User login(String userid,String password) {
 		String query="select users.userid,password,street1,street2,city,province,country,zip,email,homephone,cellphone,"
 				+ "officephone from users,contactinfo where users.userid = contactinfo.userid and users.userid = '"+userid+"' and password = '"+password+"';";
-		User user=null;
-		user=fetchUser(query, user);
+		User user=new User();
+		user.setUserid(userid);
+		user.setPassword(password);
+		fetchUser(query, user);
 		return user;
 	}
 	
-	private User fetchUser(String query, User user) {
+	private void fetchUser(String query, User user) {
 		
 		Connection conn=null;
 		Statement stmt= null;
@@ -90,10 +93,8 @@ public class userServiceImpl implements userService {
 			conn = sqlConnect.getConn();
 			stmt=conn.createStatement();
 			result=stmt.executeQuery(query);
-			
-			while(result.next())
-			{
-				user=new User();
+			if(result.next())
+			{		
 				user.setUserid(result.getString("userid"));
 				user.setPassword(result.getString("password"));
 				user.setStreet1(result.getString("street1"));
@@ -106,6 +107,7 @@ public class userServiceImpl implements userService {
 				user.setHomephone(result.getString("homephone"));
 				user.setCellphone(result.getString("cellphone"));
 				user.setOfficephone(result.getString("officephone"));
+				user.setLogon(true);
 			}
 			
 		} catch (SQLException e1) {
@@ -123,7 +125,6 @@ public class userServiceImpl implements userService {
 				throw new RuntimeException("error when querying database ",e);
 			}
 		}
-		return user;
 	}
 
 	@Override
@@ -141,8 +142,6 @@ public class userServiceImpl implements userService {
 			//表明已有人注册
 			while(result.next())
 			{
-				System.out.println(result.getString("userid"));
-				System.out.println(user.getUserid());
 				if(user.getUserid().equals(result.getString("userid").trim()))
 				{
 					flag = false;
@@ -152,13 +151,23 @@ public class userServiceImpl implements userService {
 			if(flag)
 			{
 				result.last();
+				System.out.println(result.getRow());
+				System.out.println(user.getStreet1());
+					
 				//插入数据进数据库
 				String str1 = "INSERT INTO users VALUES ('"+user.getUserid()+"', '"+user.getPassword()+"')";
-				String str2 = "INSERT INTO contactinfo VALUES ("+result.getRow()+1+", '"+user.getUserid()+"', '"+user.getStreet1()
-				+"', '"+user.getStreet2()+"', '"+user.getCity()+"', '"+ user.getProvince()+", '"+user.getCountry()+", '"+
-						user.getZip()+"', '"+user.getEmail()+"', '"+user.getHomephone()+"', '"+user.getCellphone()+"', '"+user.getOfficephone()+"')";
-							
-				if(stmt.executeUpdate(str1) == 0 || stmt.executeUpdate(str2) == 0)
+				String str2 = "INSERT INTO contactinfo VALUES ("
+						+ result.getRow() + ", '" + user.getUserid() + "', '"
+						+ user.getStreet1().toString() + "', '"
+						+ user.getStreet2().toString() + "', '"
+						+ user.getCity().toString() + "', "
+						+ user.getProvince() + ", " + user.getCountry() + ", '"
+						+ user.getZip() + "', '" + user.getEmail() + "', '"
+						+ user.getHomephone() + "', '" + user.getCellphone()
+						+ "', '" + user.getOfficephone() + "')";
+				if(stmt.executeUpdate(str1) == 0)
+					flag = false;
+				if(stmt.executeUpdate(str2) == 0)
 					flag = false;
 			}
 			
