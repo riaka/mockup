@@ -13,11 +13,6 @@ public class userLoginServlet extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {	
-		show(req, resp);
-	}
-
-	private void show(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
 		resp.setContentType("textml;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
 		String message=(String)req.getAttribute("message");
@@ -163,10 +158,10 @@ public class userLoginServlet extends HttpServlet{
 		out.close();
 	}
 
+
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		show(req, resp);
 	}
 
 }

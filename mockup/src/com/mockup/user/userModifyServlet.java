@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mockup.mysql.sqlConnect;
 import com.mockup.user.pojo.User;
@@ -32,9 +33,10 @@ public class userModifyServlet extends HttpServlet{
 	{
 		resp.setContentType("textml;charset=utf-8");
 		resp.setCharacterEncoding("UTF-8");
+		HttpSession session=req.getSession();
 		this.initCountry();
 		this.initProvince();
-		User user=(User)req.getAttribute("user");
+		User user=(User)session.getAttribute("user");
 		if(user==null)
 			user=new User();
 		PrintWriter out=resp.getWriter();

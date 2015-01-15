@@ -21,6 +21,7 @@ public class userControllerServlet extends HttpServlet{
 		String path = req.getServletPath(); 		
  		path = path.substring(0,path.indexOf("."));
  		HttpSession session=req.getSession();
+ 		userService userservice = new userServiceImpl();
  		if("/tousermanage".equals(path)){
  			User user=(User)session.getAttribute("user");
  			if(user==null)
@@ -31,7 +32,6 @@ public class userControllerServlet extends HttpServlet{
  			else if(user.getUserid().equals(User.ADMIN))
  			{
  				try{
- 					userService userservice = new userServiceImpl();
  					List<User> users=userservice.getUserList();					
  					req.setAttribute("users", users);				
  					getServletContext().getRequestDispatcher("/usermanage").forward(req, resp);				
@@ -51,41 +51,22 @@ public class userControllerServlet extends HttpServlet{
  		else if("/toregister".equals(path)){
  			getServletContext().getRequestDispatcher("/userregister").forward(req, resp);
  		}
- 		else{
- 			resp.sendError(resp.SC_NOT_FOUND);
- 		}
-		
-	}
-
-	
-
-	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
-		String path = req.getServletPath(); 		
- 		path = path.substring(0,path.indexOf("."));
- 		HttpSession session=req.getSession();
-
-		if("/dologin".equals(path)){
+ 		else if("/dologin".equals(path)){
 			String username = req.getParameter("username");			
 			String password = req.getParameter("password");
-			System.out.println("1");
-			System.out.println(username+password);
-			userService userservice = new userServiceImpl();
+			
 			User user=userservice.login(username,password);
 			if(user!=null){
-				session.setAttribute("user", user);				
-				getServletContext().getRequestDispatcher("/productlist").forward(req, resp);
+				session.setAttribute("user", user);		
+				getServletContext().getRequestDispatcher("/toproductlist.product").forward(req, resp);
 			}else{
 				req.setAttribute("message", "用户名或密码错误");
 				getServletContext().getRequestDispatcher("/userlogin").forward(req, resp);
-				//resp.sendRedirect("/userlogin");
 			}
 			
- 		} else if("/doregister".equals(path))
+ 		} 
+ 		else if("/doregister".equals(path))
  		{	
- 			//resp.sendRedirect("/productlist");
  			getServletContext().getRequestDispatcher("/error").forward(req, resp);
  			User user=new User();
 			user.setUserid(req.getParameter("username"));
@@ -101,29 +82,38 @@ public class userControllerServlet extends HttpServlet{
 			user.setCellphone(req.getParameter("cellphone"));
 			user.setOfficephone(req.getParameter("officephone"));
  			
- 			try{	
- 				
-				userService userservice = new userServiceImpl();
+ 			try{					
 				Boolean flag = userservice.registerUser(user);	
-				//注册成功
 				if(flag)
 				{
-					//req.setAttribute("message", "注册成功");
+					session.setAttribute("user", user);
 					System.out.println("注册成功");
-					getServletContext().getRequestDispatcher("/productlist").forward(req, resp);
+					getServletContext().getRequestDispatcher("/toproductlist.product").forward(req, resp);
 				}
-				//else
-					//req.setAttribute("message", "注册失败");	
-				
-				} catch (Exception e){
-					req.setAttribute("errormessage", e.getMessage());		
-					getServletContext().getRequestDispatcher("/error").forward(req, resp);
+				else{
+					getServletContext().getRequestDispatcher("/userregister").forward(req, resp);
 				}
+			} catch (Exception e){
+				req.setAttribute("errormessage", e.getMessage());		
+				getServletContext().getRequestDispatcher("/error").forward(req, resp);
+			}
  		}
 		else {
  			resp.sendError(resp.SC_NOT_FOUND);
  			getServletContext().getRequestDispatcher("/error").forward(req, resp);
  		}
+		
+	}
+
+	
+
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		this.doGet(req, resp);
+
+		
 	}
 	
 }

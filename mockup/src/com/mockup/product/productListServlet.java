@@ -162,7 +162,7 @@ public class productListServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		this.doGet(req, resp);
 	}
 
 	
