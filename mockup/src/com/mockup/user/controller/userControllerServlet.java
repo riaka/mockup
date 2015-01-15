@@ -29,7 +29,7 @@ public class userControllerServlet extends HttpServlet{
  			if(user==null)
  			{
  				session.setAttribute("message", "请先登录");
- 				resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/touserlogin.user");
+ 				resp.sendRedirect(""+this.getServletContext().getContextPath()+"/touserlogin.user");
  				session.removeAttribute("message");
  			}
  			else if(user.getUserid().equals(User.ADMIN))
@@ -67,11 +67,11 @@ public class userControllerServlet extends HttpServlet{
 			session.setAttribute("user", user);
 			if(user.isLogon())
 			{
-				resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/toproductlist.product");
+				resp.sendRedirect(""+this.getServletContext().getContextPath()+"/toproductlist.product");
 			}else
 			{
 				session.setAttribute("message", "用户名或密码错误");
- 				resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/touserlogin.user");
+ 				resp.sendRedirect(""+this.getServletContext().getContextPath()+"/touserlogin.user");
  				session.removeAttribute("message");
 			}
 			
@@ -97,11 +97,11 @@ public class userControllerServlet extends HttpServlet{
 				session.setAttribute("user", user);
 				if(flag)
 				{				
-					resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/toproductlist.product");
+					resp.sendRedirect(""+this.getServletContext().getContextPath()+"/toproductlist.product");
 				}
 				else
 				{
-					resp.sendRedirect(""+this.getServletContext().getServletContextName()+"/toregister.user");
+					resp.sendRedirect(""+this.getServletContext().getContextPath()+"/toregister.user");
 					session.removeAttribute("user");
 				}
 			} catch (Exception e)
