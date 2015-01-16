@@ -73,15 +73,17 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          					<td width=\"10%\"><a href=\"toproductlist.product\"><img nauser=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("							<td width=\"10%\"><a href=\"tousermanage.user\"><img nauser=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toshoppingcart.cart\"><img nauser=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toorderlist.order\"><img nauser=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toproductlist.product\"><img nauser=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"logoncheck/accesscontrol/tousermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							");
+		out.println("          <td width=\"10%\"><a href=\"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							");
+		out.println("          <td width=\"10%\"><a href=\"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							");
+		out.println("          <td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		
+		
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -104,7 +106,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\" images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=../../index.jsp>达内电子商务门户</a> → <a href=\"toorderlist.order\">定单列表</a>  → <b>定单明细</b>");
+		out.println("					<a href=../../index.jsp>达内电子商务门户</a> → <a href=\"toorderlist\">定单列表</a>  → <b>定单明细</b>");
 		out.println("				</td>"); 
 		out.println("			</tr>");
 		out.println("		</table>");
