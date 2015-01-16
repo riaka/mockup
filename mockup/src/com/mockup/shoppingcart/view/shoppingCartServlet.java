@@ -54,9 +54,9 @@ public class shoppingCartServlet extends HttpServlet {
 		out.println("							");
 		out.println("          <td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
 		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
@@ -159,9 +159,9 @@ public class shoppingCartServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 valign=\"middle\" align=\"center\" width=\"8%\" colspan=\"6\">");
 		out.println("				<form>");
-		out.println("					<input type=\"button\" value=\"提交订单\" size=\"1\" onclick=\"javascript:window.location='toorderconfirm.cart';\">");
+		out.println("					<input type=\"button\" value=\"提交订单\" size=\"1\" onclick=\"javascript:window.location='logoncheck/toorderconfirm';\">");
 		out.println("					<input type=\"button\" value=\"继续购物\" size=\"2\" onclick=\"javascript:window.location='toproductlist.product';\">");
-		out.println("					<input type=\"button\" value=\"清空购物车\" size=\"2\" onclick=\"javascript:window.location='tocleancart.cart';\">");
+		out.println("					<input type=\"button\" value=\"清空购物车\" size=\"2\" onclick=\"javascript:window.location='logoncheck/tocleancart';\">");
 		out.println("				</form>");
 		out.println("				</td>");
 		out.println("			</tr>");
