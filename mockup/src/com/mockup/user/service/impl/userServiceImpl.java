@@ -26,8 +26,8 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
-	public User login(String userid,String password) {
-		return DaoFactory.getUserDao().login(userid, password);
+	public void login(User user) {
+		DaoFactory.getUserDao().login(user);
 	}
 	
 	@Override

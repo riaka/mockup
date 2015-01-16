@@ -7,6 +7,6 @@ import com.mockup.user.pojo.User;
 public interface userDao {
 	public List getUserList();
 	public User getCertainUser(String userid);
-	public User login(String userid,String password);
+	public void login(User user);
 	public Boolean registerUser(User user);
 }

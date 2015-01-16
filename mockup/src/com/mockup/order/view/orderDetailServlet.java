@@ -24,15 +24,9 @@ public class orderDetailServlet extends HttpServlet{
 	@Override 
 	public  void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		resp.setContentType("text/html;charset=utf-8");
-		resp.setCharacterEncoding("UTF-8");
 		HttpSession session=req.getSession();
 		orderDetail orderdetail=(orderDetail) req.getAttribute("orderdetail");
-		if(orderdetail==null)
-			orderdetail=new orderDetail();
 		User user =(User) session.getAttribute("user");
-		if(user==null || !user.isLogon())
-			user=new User();
 		String userid=user.getUserid();
 		String userstreet1=user.getStreet1();
 		String userzip=user.getZip();
@@ -40,7 +34,6 @@ public class orderDetailServlet extends HttpServlet{
 		String officephone=user.getOfficephone();
 		String cellphone=user.getCellphone();
 		String email=user.getEmail();
-		
 		String paystyle=orderdetail.getPayStyle();
 		double amount=0;
 		orderLine orderline;
@@ -49,8 +42,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
 		out.println("	<head>");
-		out.println("		<title>达内电子商务门户</title>");
-		
+		out.println("		<title>达内电子商务门户</title>");	
 		out.println("		<userta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 		out.println("		<userta nauser=\"description\" content=\"达内电子商务门户\">");
 		out.println("		<link href=\"css/tarena.css\" rel=stylesheet>");
@@ -71,19 +63,15 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("				<td background=\" images/dh_bg.gif\" align=\"left\" height=\"12\">");
 		out.println("					<table width=\"100\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">");
 		out.println("						<tr>");
-		out.println("							<td width=\"5%\"></td>");
+		out.println("							<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"logoncheck/accesscontrol/tousermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
-		
-		
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/access/tousermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("");
+		out.println("							<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -106,7 +94,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\" images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=../../index.jsp>达内电子商务门户</a> → <a href=\"toorderlist\">定单列表</a>  → <b>定单明细</b>");
+		out.println("					<a href=../../index.jsp>达内电子商务门户</a> → <a href=\"logoncheck/toorderlist\">定单列表</a>  → <b>定单明细</b>");
 		out.println("				</td>"); 
 		out.println("			</tr>");
 		out.println("		</table>");

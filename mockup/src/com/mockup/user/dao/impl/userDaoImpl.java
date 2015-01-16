@@ -73,14 +73,10 @@ public class userDaoImpl implements userDao {
 	}
 
 	@Override
-	public User login(String userid, String password) {
+	public void login(User user) {
 		String query="select users.userid,password,street1,street2,city,province,country,zip,email,homephone,cellphone,"
-				+ "officephone from users,contactinfo where users.userid = contactinfo.userid and users.userid = '"+userid+"' and password = '"+password+"';";
-		User user=new User();
-		user.setUserid(userid);
-		user.setPassword(password);
+				+ "officephone from users,contactinfo where users.userid = contactinfo.userid and users.userid = '"+user.getUserid()+"' and password = '"+user.getPassword()+"';";
 		fetchUser(query, user);
-		return user;
 	}
 	private void fetchUser(String query, User user) {
 		

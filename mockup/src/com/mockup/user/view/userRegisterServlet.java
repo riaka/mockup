@@ -22,33 +22,19 @@ public class userRegisterServlet extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		resp.setContentType("textml;charset=utf-8");
-		resp.setCharacterEncoding("UTF-8");
+		
 		HttpSession session=req.getSession();
 		User user=(User)session.getAttribute("user");
-		String userid="";
-		String city="";
-		String street1="";
-		String street2="";
-		String zip="";
-		String homephone="";
-		String officephone="";
-		String cellphone="";
-		String email="";
-		if(user==null)
-			user=new User();
-		if(user.isLogon())
-		{
-			userid=user.getUserid();
-			city=user.getCity();
-			street1=user.getStreet1();
-			street2=user.getStreet2();
-			zip=user.getZip();
-			homephone=user.getHomephone();
-			officephone=user.getOfficephone();
-			cellphone=user.getCellphone();
-			email=user.getEmail();		
-		}
+		String userid=user.getUserid();
+		String city=user.getCity();
+		String street1=user.getStreet1();
+		String street2=user.getStreet2();
+		String zip=user.getZip();
+		String homephone=user.getHomephone();
+		String officephone=user.getOfficephone();
+		String cellphone=user.getCellphone();
+		String email=user.getEmail();		
+		
 		PrintWriter out=resp.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -78,15 +64,15 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("							<td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("							<td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/access/tousermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -115,7 +101,7 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("");
 		out.println("		</table>");
 		out.println("		<br>");
-		out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate()\" action=\"doregister.user\">");
+		out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate()\" action=\"doregister\">");
 		out.println("			<table class=\"tableborder1\" id=\"table1\" align=\"center\" cellpadding=\"3\" cellspacing=\"1\">");
 		out.println("			<tbody>");
 		out.println("			<tr>");
@@ -261,7 +247,6 @@ public class userRegisterServlet extends HttpServlet{
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody2\" colspan=\"2\" align=\"center\" valign=\"middle\">");
 		out.println("				<input type=\"submit\" value=\"注册\">&nbsp;&nbsp;");
-		//out.println("				<a href=\"doregister.user\">注册</td>");
 		out.println("				<input value=\"清 除\" type=\"reset\"></td>");
 		out.println("");
 		out.println("			</tr>");

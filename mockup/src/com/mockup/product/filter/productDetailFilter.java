@@ -9,10 +9,12 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 import com.mockup.product.pojo.Product;
 import com.mockup.product.service.productService;
 import com.mockup.product.service.impl.productServiceImpl;
+import com.mockup.util.ServiceFactory;
 
 /**
  * Servlet Filter implementation class productDetailFilter
@@ -31,15 +33,14 @@ public class productDetailFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		try{
-			productService productService;
-			productService = new productServiceImpl();
-			Product product= productService.getProduct(req.getParameter("productid"));
+			
+			Product product= ServiceFactory.getProductService().getProduct(req.getParameter("productid"));
 			req.setAttribute("product", product);
 			chain.doFilter(req, resp);
 		}catch(Exception e)
 		{
 			req.setAttribute("errormessage", e.getMessage());
-			config.getServletContext().getRequestDispatcher("/error").forward(req, resp);
+			((HttpServletResponse)resp).sendRedirect(""+config.getServletContext().getContextPath()+"/error");
 		}	
 		
 	}

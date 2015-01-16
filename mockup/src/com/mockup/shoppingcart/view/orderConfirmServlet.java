@@ -22,23 +22,16 @@ public class orderConfirmServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		resp.setContentType("textml;charset=utf-8");
-		resp.setCharacterEncoding("UTF-8");
 		HttpSession session=req.getSession();
 		shoppingCart mycart=(shoppingCart)session.getAttribute("shoppingcart");
-		User user=(User)session.getAttribute("user");
-		if(user==null || !user.isLogon())
-			user=new User();
-		if(mycart==null)
-			mycart=new shoppingCart();
+		User user=(User)session.getAttribute("user");		
 		String userid=user.getUserid();
 		String userstreet1=user.getStreet1();
 		String zip=user.getZip();
 		String homephone=user.getHomephone();
 		String officephone=user.getOfficephone();
 		String cellphone=user.getCellphone();
-		String email=user.getEmail();
-		
+		String email=user.getEmail();	
 		Product product;
 		
 		PrintWriter out = resp.getWriter();	
@@ -69,15 +62,15 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          					<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"accessmanage/tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
-		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/access/tousermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("");
+		out.println("							<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -115,7 +108,7 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("						<font color=\"#ffffff\" size=\"2pt\">");
 		out.println("							<b>用户信息</b>");
 		out.println("						</font>");
-		out.println("						<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='tousermodify.user';\">");
+		out.println("						<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='logoncheck/tousermodify';\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -180,7 +173,7 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("					<font color=\"#ffffff\" size=\"2pt\">");
 		out.println("							<b>商品购物清单</b>");
 		out.println("					</font>");
-		out.println("					<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='toshoppingcart.cart';\" >");
+		out.println("					<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='logoncheck/toshoppingcart';\" >");
 		out.println("				</td>");
 		out.println("			</tr>");
 		
@@ -207,7 +200,7 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td width=\"65%\" align=\"center\">");
 		out.println("					<b>请认真检查以上订单信息，确认无误后，点击&nbsp;→</b>");
-		out.println("					<a href=\"addorder.order\"><img border=\"0\" src=\"images/submit.gif\"></a>");
+		out.println("					<a href=\"logoncheck/toorderlist\"><img border=\"0\" src=\"images/submit.gif\"></a>");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");

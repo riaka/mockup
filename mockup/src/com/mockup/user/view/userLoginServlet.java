@@ -16,17 +16,12 @@ public class userLoginServlet extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {	
-		resp.setContentType("textml;charset=utf-8");
-		resp.setCharacterEncoding("UTF-8");
 		HttpSession session=req.getSession();
-		User user=(User)session.getAttribute("user");
-		if(user==null)
-			user=new User();
-		String message=(String)session.getAttribute("message");
-		if(message==null)
-			message="";
+		User user=(User)session.getAttribute("user");		
+		String message=(String)session.getAttribute("message");		
 		String userid=user.getUserid();
 		String password=user.getPassword();
+		
 		PrintWriter out = resp.getWriter();
 		
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
@@ -55,15 +50,15 @@ public class userLoginServlet extends HttpServlet{
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          					<td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          					<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("							<td width=\"10%\"><a href=\"tousermanage.user\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/access/tousermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toshoppingcart.cart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toorderlist.order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toproductlist.product\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -89,7 +84,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("			</tr>");
 		out.println("		</table>");
 		out.println("		<br>");
-		out.println("		<form id=\"loginform\" method=\"post\" onsubmit=\"return loginvalidate()\" action=\"dologin.user\">");
+		out.println("		<form id=\"loginform\" method=\"post\" onsubmit=\"return loginvalidate()\" action=\"dologin\">");
 		out.println("		<table cellpadding=\"3\" cellspacing=\"1\" align=\"center\" class=\"tableborder1\">");
 		out.println("			<tr>");
 		out.println("				<td colspan=\"4\" valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"50\">");
@@ -105,7 +100,7 @@ public class userLoginServlet extends HttpServlet{
 		out.println("				 </td>");
 		out.println("				<td class=tablebody1 valign=\"middle\" height=\"20\" width=\"80%\">");
 		out.println("					");
-		out.println("						<input name=\"username\" id=\"userName\" type=\"text\" value=\""+userid+"\"><a href=\"toregister.user\">注册新用户</a><label id=\"p1\"></lable>");
+		out.println("						<input name=\"username\" id=\"userName\" type=\"text\" value=\""+userid+"\"><a href=\"/toregister\">注册新用户</a><label id=\"p1\"></lable>");
 		out.println("				");
 		out.println("				");
 		out.println("				");

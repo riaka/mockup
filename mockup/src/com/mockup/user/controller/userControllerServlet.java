@@ -19,7 +19,7 @@ public class userControllerServlet extends HttpServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException 
 	{
-		String path = req.getServletPath(); 		
+		/*String path = req.getServletPath(); 		
  		path = path.substring(0,path.indexOf("."));
  		HttpSession session=req.getSession();
  		userService userservice = new userServiceImpl();
@@ -76,7 +76,7 @@ public class userControllerServlet extends HttpServlet{
 			}
 			
  		} 
- 		else if("/doregister".equals(path))
+ 		else if("/doregisterFilter".equals(path))
  		{	
  			User user=new User();
 			user.setUserid(req.getParameter("userid"));
@@ -114,7 +114,7 @@ public class userControllerServlet extends HttpServlet{
  		{
  			resp.sendError(resp.SC_NOT_FOUND);
  			getServletContext().getRequestDispatcher("/error").forward(req, resp);
- 		}
+ 		}*/
 		
 	}
 
