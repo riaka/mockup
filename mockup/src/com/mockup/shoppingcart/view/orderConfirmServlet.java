@@ -22,6 +22,9 @@ public class orderConfirmServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String contextpath=(String)this.getServletContext().getAttribute("contextpath");
+		String imagepath=(String)this.getServletContext().getAttribute("imagepath");
+		String csspath=(String)this.getServletContext().getAttribute("csspath");
 		HttpSession session=req.getSession();
 		shoppingCart mycart=(shoppingCart)session.getAttribute("shoppingcart");
 		User user=(User)session.getAttribute("user");		
@@ -41,7 +44,7 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("		<title>达内电子商务门户</title>");
 		out.println("		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 		out.println("		<meta name=\"description\" content=\"达内电子商务门户\">");
-		out.println("		<link href=\"css/tarena.css\" rel=stylesheet>");
+		out.println("		<link href=\""+csspath+"/tarena.css\" rel=stylesheet>");
 		out.println("	</head>");
 		out.println("	<body topmargin=\"0\" leftmargin=\"0\" rightmargin=\"0\" bottommargin=\"0\">");
 		out.println("	");
@@ -49,28 +52,28 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("");
 		out.println("		<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" id=\"table2\">");
 		out.println("			<tr>");
-		out.println("				<td align=\"left\" width=\"7%\" background=\"images/top_bg.gif\"><img src=\"images/logo.gif\" width=\"286\" height=\"58\"></td>");
-		out.println("				<td width=\"62%\" background=\"images/top_bg.gif\">　</td>");
-		out.println("				<td width=\"31%\" background=\"images/top_bg.gif\" align=\"right\"><img src=\"images/top_r.gif\" width=\"352\" height=\"58\" border=\"0\"></td>");
+		out.println("				<td align=\"left\" width=\"7%\" background=\""+imagepath+"/top_bg.gif\"><img src=\""+imagepath+"/logo.gif\" width=\"286\" height=\"58\"></td>");
+		out.println("				<td width=\"62%\" background=\""+imagepath+"/top_bg.gif\">　</td>");
+		out.println("				<td width=\"31%\" background=\""+imagepath+"/top_bg.gif\" align=\"right\"><img src=\""+imagepath+"/top_r.gif\" width=\"352\" height=\"58\" border=\"0\"></td>");
 		out.println("			</tr>");
 		out.println("		</table>");
 		out.println("		");
 		out.println("		<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
 		out.println("			<tr>");
-		out.println("				<td background=\"images/dh_bg.gif\" align=\"left\" height=\"12\">");
+		out.println("				<td background=\""+imagepath+"/dh_bg.gif\" align=\"left\" height=\"12\">");
 		out.println("					<table width=\"100\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">");
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          					<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          					<td width=\"10%\"><a href=\""+contextpath+"toproductlist\"><img name=\"Image1\" border=\"0\" src=\""+imagepath+"/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("							<td width=\"10%\"><a href=\"logoncheck/access/tousermanage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\""+contextpath+"logoncheck/access/tousermanage\"><img name=\"Image2\" border=\"0\" src=\""+imagepath+"/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\""+contextpath+"logoncheck/toshoppingcart\"><img name=\"Image4\" border=\"0\" src=\""+imagepath+"/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\""+contextpath+"logoncheck/toorderlist\"><img name=\"Image5\" border=\"0\" src=\""+imagepath+"/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"toproductlist\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\""+contextpath+"toproductlist\"><img name=\"Image6\" border=\"0\" src=\""+imagepath+"/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -94,8 +97,8 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("		<table cellspacing=\"1\" cellpadding=\"3\" align=\"center\" class=\"tableBorder2\">");
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
-		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=index.jsp>达内电子商务门户</a> →&nbsp<img border=\"0\" src=\"images/dog.gif\" width=\"19\" height=\"18\">&nbsp订单确认");
+		out.println("					<img src=\""+imagepath+"/Forum_nav.gif\" align=\"absmiddle\">");
+		out.println("					<a href=index.jsp>达内电子商务门户</a> →&nbsp<img border=\"0\" src=\""+imagepath+"/dog.gif\" width=\"19\" height=\"18\">&nbsp订单确认");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");
@@ -104,11 +107,11 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("		");
 		out.println("		<table cellspacing=\"1\" cellpadding=\"3\" align=\"center\" class=\"tableborder1\">");
 		out.println("			<tr>");
-		out.println("				<td valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"8%\" colspan=\"2\">");
+		out.println("				<td valign=\"middle\" align=\"center\" height=\"25\" background=\""+imagepath+"/bg2.gif\" width=\"8%\" colspan=\"2\">");
 		out.println("						<font color=\"#ffffff\" size=\"2pt\">");
 		out.println("							<b>用户信息</b>");
 		out.println("						</font>");
-		out.println("						<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='logoncheck/tousermodify';\">");
+		out.println("						<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='"+contextpath+"logoncheck/tousermodify';\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -145,7 +148,7 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("		");
 		out.println("		<table cellspacing=\"1\" cellpadding=\"3\" align=\"center\" class=\"tableborder1\">");
 		out.println("			<tr>");
-		out.println("				<td valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"8%\" colspan=\"2\">");
+		out.println("				<td valign=\"middle\" align=\"center\" height=\"25\" background=\""+imagepath+"/bg2.gif\" width=\"8%\" colspan=\"2\">");
 		out.println("					<font color=\"#ffffff\" size=\"2pt\">");
 		out.println("						<b>付款方式</b>");
 		out.println("					</font>");
@@ -169,11 +172,11 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("		");
 		out.println("		<table cellspacing=\"1\" cellpadding=\"3\" align=\"center\" class=\"tableborder1\">");
 		out.println("			<tr>");
-		out.println("				<td valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"8%\" colspan=\"5\">");
+		out.println("				<td valign=\"middle\" align=\"center\" height=\"25\" background=\""+imagepath+"/bg2.gif\" width=\"8%\" colspan=\"5\">");
 		out.println("					<font color=\"#ffffff\" size=\"2pt\">");
 		out.println("							<b>商品购物清单</b>");
 		out.println("					</font>");
-		out.println("					<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='logoncheck/toshoppingcart';\" >");
+		out.println("					<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='"+contextpath+"logoncheck/toshoppingcart';\" >");
 		out.println("				</td>");
 		out.println("			</tr>");
 		
@@ -200,7 +203,7 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td width=\"65%\" align=\"center\">");
 		out.println("					<b>请认真检查以上订单信息，确认无误后，点击&nbsp;→</b>");
-		out.println("					<a href=\"logoncheck/toorderlist\"><img border=\"0\" src=\"images/submit.gif\"></a>");
+		out.println("					<a href=\""+contextpath+"logoncheck/toorderlist\"><img border=\"0\" src=\""+imagepath+"/submit.gif\"></a>");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");
@@ -212,7 +215,7 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("<!-- Footer Start -->");
 		out.println("		<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\" height=\"28\">");
 		out.println("			<tr>");
-		out.println("				<td height=\"17\" background=\"images/bot_bg.gif\">");
+		out.println("				<td height=\"17\" background=\""+imagepath+"/bot_bg.gif\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");

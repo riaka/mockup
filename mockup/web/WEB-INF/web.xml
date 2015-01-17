@@ -8,12 +8,13 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+    
   </welcome-file-list>
+  
   <context-param>
            <param-name>Admin</param-name>
            <param-value>admin</param-value>
   </context-param>
-  
   <filter>
   	<filter-name>encodingFilter</filter-name>
   	<filter-class>com.mockup.user.filter.encodingFilter</filter-class>
@@ -22,7 +23,16 @@
   	<filter-name>encodingFilter</filter-name>
   	<url-pattern>*</url-pattern>
   </filter-mapping>
-  	
+  
+  <filter>
+  	<filter-name>pathFilter</filter-name>
+  	<filter-class>com.mockup.user.filter.pathFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>pathFilter</filter-name>
+  	<url-pattern>*</url-pattern>
+  </filter-mapping>
+  
   <filter>
   	<filter-name>logonCheck</filter-name>
   	<filter-class>com.mockup.user.filter.logonCheckFilter</filter-class>
@@ -94,24 +104,23 @@
   	<filter-name>usermodifyFilter</filter-name>
   	<url-pattern>/logoncheck/tousermodify</url-pattern>
   </filter-mapping>
-  
-  <filter>
-  	<filter-name>addtoshoppingcartFilter</filter-name>
-  	<filter-class>com.mockup.shoppingcart.filter.addtoshoppingcartFilter</filter-class>
-  </filter>
   <filter>
   	<filter-name>toshoppingcartFilter</filter-name>
   	<filter-class>com.mockup.shoppingcart.filter.toshoppingcartFilter</filter-class>
   </filter>
   <filter-mapping>
   	<filter-name>toshoppingcartFilter</filter-name>
-  	<url-pattern>/logoncheck/toshoppingcart</url-pattern>
+  	<url-pattern>/logoncheck/toshoppingcart/*</url-pattern>
   </filter-mapping>
+  
+  <filter>
+  	<filter-name>addtoshoppingcartFilter</filter-name>
+  	<filter-class>com.mockup.shoppingcart.filter.addtoshoppingcartFilter</filter-class>
+  </filter>
   <filter-mapping>
   	<filter-name>addtoshoppingcartFilter</filter-name>
   	<url-pattern>/logoncheck/toshoppingcart/addtoshoppingcart</url-pattern>
   </filter-mapping>
-  
   
   <filter>
   	<filter-name>toorderconfirmFilter</filter-name>

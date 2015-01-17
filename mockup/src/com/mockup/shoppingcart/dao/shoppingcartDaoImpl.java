@@ -22,7 +22,8 @@ public class shoppingcartDaoImpl implements shoppingcartDao {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
 			
-			while(rs.next()){		
+			if(rs.next())		
+			{
 				product.setProductid(rs.getString("productid"));
 				product.setName(rs.getString("name"));
 				product.setDescription(rs.getString("description"));
