@@ -38,8 +38,4 @@ public class orderDetail {
 		this.orderlines.add(orderline);
 	}
 	
-	public orderDetail()
-	{
-	}
-	
 }

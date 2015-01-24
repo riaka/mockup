@@ -44,7 +44,9 @@ public class productListFilter implements Filter {
 				
 				req.setAttribute("productlist", productlist);
 				
-				chain.doFilter(req, resp);
+				req.getRequestDispatcher("productList.vm").forward(req, resp);
+				return;
+				//chain.doFilter(req, resp);
 				
 			} catch (Exception e){
 				req.setAttribute("errormessage", e.getMessage());

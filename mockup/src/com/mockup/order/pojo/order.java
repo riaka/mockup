@@ -1,12 +1,12 @@
 package com.mockup.order.pojo;
 
 public class order {
-	int orderid;
-	String name;
-	double cost;
-	String userid;
-	int statusid;
-	payWay payway=new payWay();
+	private int orderid;
+	private String name;
+	private double cost;
+	private String userid;
+	private int statusid;
+	private payWay payway=new payWay();
 	public int getOrderid() {
 		return orderid;
 	}

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mockup.shoppingcart.pojo.shoppingCart;
 import com.mockup.user.pojo.User;
 
 public class logonCheckFilter implements Filter {
@@ -34,6 +35,12 @@ public class logonCheckFilter implements Filter {
 			((HttpServletResponse) resp).sendRedirect(""+config.getServletContext().getContextPath()+"/tologin");
 			session.removeAttribute("message");
 			return;
+		}
+		shoppingCart mycart=(shoppingCart)session.getAttribute("shoppingcart");
+		if(mycart==null)
+		{
+			mycart=new shoppingCart();
+			session.setAttribute("shoppingcart",mycart );
 		}
 		chain.doFilter(req, resp);
 

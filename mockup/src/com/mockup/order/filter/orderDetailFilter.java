@@ -33,7 +33,9 @@ public class orderDetailFilter implements Filter {
 		try{
 			orderDetail orderdetail=ServiceFactory.getOrderService().getOrderDetail(req.getParameter("orderid"), req.getParameter("paywayid"));
 			req.setAttribute("orderdetail", orderdetail);
-			chain.doFilter(req, resp);
+			req.getRequestDispatcher("/orderDetail.vm").forward(req, resp);
+			return ;
+			//chain.doFilter(req, resp);
 		}catch(Exception e)
 		{
 			req.setAttribute("errormessage", e.getMessage());

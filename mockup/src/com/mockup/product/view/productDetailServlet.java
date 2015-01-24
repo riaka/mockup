@@ -184,7 +184,7 @@ public class productDetailServlet extends HttpServlet {
 		out.println("			");
 		out.println("			<tr>");
 		out.println("			<td colspan=\"2\" class=tablebody2 valign=\"top\" align=\"center\" width=\"100%\" height=\"32\"> ");
-		out.println("				<a href=\""+contextpath+"logoncheck/toshoppingcart/addtoshoppingcart?productid="+productid+"\"><img border=\"0\" src=\""+imagepath+"/buycar.gif\" ></a> ");
+		out.println("				<a href=\""+contextpath+"logoncheck/addtoshoppingcart?productid="+productid+"\"><img border=\"0\" src=\""+imagepath+"/buycar.gif\" ></a> ");
 		out.println("    		</td>");
 		out.println("    		</tr>");
 		out.println("			");

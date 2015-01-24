@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mockup.order.pojo.payWay;
 import com.mockup.product.pojo.Product;
 import com.mockup.shoppingcart.pojo.shoppingCart;
 import com.mockup.user.pojo.User;
 
 public class orderConfirmServlet extends HttpServlet {
-	private static String PAYWAY="0,邮局汇款,1,银行转账,货到付款";
-	private Map<String,String> payway=new HashMap();
+	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -28,6 +29,7 @@ public class orderConfirmServlet extends HttpServlet {
 		HttpSession session=req.getSession();
 		shoppingCart mycart=(shoppingCart)session.getAttribute("shoppingcart");
 		User user=(User)session.getAttribute("user");		
+		List<payWay> payways = (ArrayList<payWay>)req.getAttribute("payways");
 		String userid=user.getUserid();
 		String userstreet1=user.getStreet1();
 		String zip=user.getZip();
@@ -158,9 +160,11 @@ public class orderConfirmServlet extends HttpServlet {
 		out.println("				<td class=tablebody2 align=\"center\" width=\"40%\"></td>");
 		out.println("				<td class=tablebody1>");
 		out.println("					<select name=\"付账方式\">");
-		for(int i=0;i<payway.size();i++)
+		payWay payway;
+		for(Iterator<payWay> pays = payways.iterator();pays.hasNext();)
 		{
-			out.println("    						<option value=\""+i+"\" >"+payway.get(String.valueOf(i))+"</option>");
+			payway=pays.next();
+			out.println("    						<option value=\""+payway.getPaywayid()+"\" >"+payway.getStyle()+"</option>");
 
 		}
 		out.println("					</select>");
@@ -240,10 +244,5 @@ public class orderConfirmServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 	}
-	private void initPayStyle()
-	{
-		String[] payways=PAYWAY.split(",");
-		for(int i=0;i<payways.length;i++)
-			payway.put(payways[i],payways[++i]);
-	}
+	
 }

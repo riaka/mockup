@@ -31,8 +31,6 @@ public class productListServlet extends HttpServlet {
 		HttpSession session=req.getSession();
 		User user=(User)session.getAttribute("user");
 		List productList = (List) req.getAttribute("productlist");		
-		resp.setContentType("text/html;charset=utf-8");
-		resp.setCharacterEncoding("UTF-8");
 		String userid=user.getUserid();
 		Product product;
 		PrintWriter out=resp.getWriter();
@@ -134,7 +132,7 @@ public class productListServlet extends HttpServlet {
 			out.println("					"+product.getBasePrice());
 			out.println("				</td>");
 			out.println("				");
-			out.println("    <td class=tablebody1 valign=\"middle\" align=\"center\" width=\"24%\"> <a href=\""+contextpath+"logoncheck/toshoppingcart/addtoshoppingcart?productid="+product.getProductid()+"\"><img border=\"0\" src=\""+imagepath+"/car_new.gif\" width=\"97\" height=\"18\"></a> ");
+			out.println("    <td class=tablebody1 valign=\"middle\" align=\"center\" width=\"24%\"> <a href=\""+contextpath+"logoncheck/addtoshoppingcart?productid="+product.getProductid()+"\"><img border=\"0\" src=\""+imagepath+"/car_new.gif\" width=\"97\" height=\"18\"></a> ");
 			out.println("    </td>");
 			out.println("			</tr>   ");
 		}

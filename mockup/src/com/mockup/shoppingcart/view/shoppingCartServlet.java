@@ -160,9 +160,9 @@ public class shoppingCartServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td class=tablebody2 valign=\"middle\" align=\"center\" width=\"8%\" colspan=\"6\">");
 		out.println("				<form>");
-		out.println("					<input type=\"button\" value=\"提交订单\" size=\"1\" onclick=\"javascript:window.location='"+contextpath+"logoncheck/toshoppingcart/toorderconfirm';\">");
+		out.println("					<input type=\"button\" value=\"提交订单\" size=\"1\" onclick=\"javascript:window.location='"+contextpath+"logoncheck/toorderconfirm';\">");
 		out.println("					<input type=\"button\" value=\"继续购物\" size=\"2\" onclick=\"javascript:window.location='"+contextpath+"toproductlist';\">");
-		out.println("					<input type=\"button\" value=\"清空购物车\" size=\"2\" onclick=\"javascript:window.location='"+contextpath+"logoncheck/toshoppingcart/tocleancart';\">");
+		out.println("					<input type=\"button\" value=\"清空购物车\" size=\"2\" onclick=\"javascript:window.location='"+contextpath+"logoncheck/tocleancart';\">");
 		out.println("				</form>");
 		out.println("				</td>");
 		out.println("			</tr>");

@@ -229,8 +229,8 @@ public class orderDetailServlet extends HttpServlet{
 			out.println("    			数量："+orderline.getAmount());
 			out.println("    			</td>");
 			out.println("    			<td class=tablebody2 valign=\"middle\" width=\"25%\"> ");
-			amount=orderline.getBaseprice()*orderline.getBaseprice();
-			out.println("    			小计：￥"+amount);
+			amount+=orderline.getBaseprice()*orderline.getBaseprice();
+			out.println("    			小计：￥"+orderline.getBaseprice()*orderline.getBaseprice());
 			out.println("    			</td>");
 			out.println("			</tr>");
 			out.println("			");
@@ -246,14 +246,6 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("		</table>");
 		out.println("		<br>");
 		out.println("		<br>");
-		out.println("		");
-		out.println("");
-		out.println("");
-		out.println("");
-		out.println("");
-		out.println("");
-		out.println("");
-		out.println("");
 		out.println("<!-- Body End -->");
 		out.println("<!-- Footer Start -->");
 		out.println("		<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\" height=\"28\">");
@@ -276,9 +268,7 @@ public class orderDetailServlet extends HttpServlet{
 		out.println("<!-- Footer End -->");
 		out.println("	</body>");
 		out.println("</html>");
-		out.println("");
-		out.println("");
-		out.println("");
+		out.close();
 	}
 
 	@Override

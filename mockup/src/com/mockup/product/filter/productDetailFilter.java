@@ -36,7 +36,9 @@ public class productDetailFilter implements Filter {
 			
 			Product product= ServiceFactory.getProductService().getProduct(req.getParameter("productid"));
 			req.setAttribute("product", product);
-			chain.doFilter(req, resp);
+			req.getRequestDispatcher("/productDetail.vm").forward(req, resp);
+			return;
+			//chain.doFilter(req, resp);
 		}catch(Exception e)
 		{
 			req.setAttribute("errormessage", e.getMessage());

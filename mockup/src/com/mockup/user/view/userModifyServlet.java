@@ -2,10 +2,7 @@ package com.mockup.user.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,17 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mockup.user.pojo.User;
-import com.mockup.user.service.userService;
-import com.mockup.user.service.impl.userServiceImpl;
-import com.mockup.util.ConnectionFactory;
 
 public class userModifyServlet extends HttpServlet{
 
-	private static String COUNTRY="1,中国,2,中国香港,3,中国台湾";
-	private static String PROVINCE="1,安徽,2,北京,3,重庆,4,福建,5,广东,6,甘肃,7,广西,8,贵州,9,河南,10,湖北,11,河北,12,海南,13,香港,14,黑龙江,15,湖南,16,吉林,17,江苏,18,江西,19,辽宁,20,澳门,21,内蒙古,22,宁夏,"
-			+ "23,青海,24,四川,25,山东,26,上海,27,陕西,28,山西,29,天津,30,台湾,31,新疆,32,西藏,33,云南,34,浙江,35,其它,36,中国香港,37,中国台湾";
-	private Map<String,String> province=new HashMap();
-	private Map<String,String> country=new HashMap();
+	
+	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
@@ -36,8 +27,10 @@ public class userModifyServlet extends HttpServlet{
 		String csspath=(String)this.getServletContext().getAttribute("csspath");
 		HttpSession session=req.getSession();
 		User user=(User)session.getAttribute("user");
-		this.initCountry();
-		this.initProvince();
+		List<String> province=(ArrayList<String>)req.getAttribute("province");
+		List<String> country=(ArrayList<String>)req.getAttribute("country");
+		/*String[] province=(String[])req.getAttribute("province");
+		String[] country=(String[])req.getAttribute("country");*/
 				
 		PrintWriter out=resp.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 \">");
@@ -141,25 +134,22 @@ public class userModifyServlet extends HttpServlet{
 		out.println("				<td width=\"60%\" class=\"tablebody1\">");
 		out.println("					<select name=\"country\" onchange=\"javascript:initProvince(this.value)\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\">");	
 		String coun=user.getCountry();
-		for(int i=0;i<country.size();)
+		for(int i=0;i<country.size();i++)
 		{
-			i++;
-			if(coun.equals(String.valueOf(i)))
-				out.println("    						<option value=\""+i+"\" selected>"+country.get(String.valueOf(i))+"</option>");
-			else out.println("    						<option value=\""+i+"\" >"+country.get(String.valueOf(i))+"</option>");
+			if(coun.equals(String.valueOf(i+1)))
+				out.println("    						<option value=\""+i+"\" selected>"+country.get(i)+"</option>");
+			else out.println("    						<option value=\""+i+"\" >"+country.get(i)+"</option>");
 
 		}
-		
 		out.println("					</select>");
 		out.println("					<select name=\"province\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\">");
 		out.println("               		  	");
 		String prov=user.getProvince();
-		for(int i=0;i<province.size();)
+		for(int i=0;i<province.size();i++)
 		{
-			i++;
-			if(prov.equals(String.valueOf(i)))
-				out.println("    						<option value=\""+i+"\" selected>"+province.get(String.valueOf(i))+"</option>");
-			else out.println("    						<option value=\""+i+"\" >"+province.get(String.valueOf(i))+"</option>");
+			if(prov.equals(String.valueOf(i+1)))
+				out.println("    						<option value=\""+i+"\" selected>"+province.get(i)+"</option>");
+			else out.println("    						<option value=\""+i+"\" >"+province.get(i)+"</option>");
 		}
 		out.println("				</select>省");
 		out.println("				<input type=\"text\" size=\"8\" name=\"city\" value=\""+user.getCity()+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>市/县</td>");
@@ -232,21 +222,6 @@ public class userModifyServlet extends HttpServlet{
 		out.println("</html>");
 		out.close();
 		
-	}
-	
-
-	
-	private void initCountry()
-	{
-		String[] countries=COUNTRY.split(",");
-		for(int i=0;i<countries.length;i++)
-			country.put(countries[i],countries[++i]);
-	}
-	private void initProvince()
-	{
-		String[] provinces=PROVINCE.split(",");
-		for(int i=0;i<provinces.length;i++)
-			province.put(provinces[i], provinces[++i]);
 	}
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)

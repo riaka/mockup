@@ -34,7 +34,7 @@ public class addtoshoppingcartFilter implements Filter {
 		
 		HttpSession session=((HttpServletRequest)req).getSession();
 		shoppingCart mycart=(shoppingCart)session.getAttribute("shoppingcart");
-		
+		System.out.println(mycart.getProducts().size());
 		try{
 			ServiceFactory.getShoppingcartService().addToMyShoppingCart(mycart, req.getParameter("productid"));									
 			((HttpServletResponse)resp).sendRedirect(""+config.getServletContext().getContextPath()+"/logoncheck/toshoppingcart");	

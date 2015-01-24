@@ -32,7 +32,9 @@ public class tologinFilter implements Filter {
 			session.setAttribute("user", new User());
 		if(message==null)
 			session.setAttribute("message", "");
-		chain.doFilter(req, resp);
+		req.getRequestDispatcher("/userLogin.vm").forward(req, resp);
+		return ;
+		//chain.doFilter(req, resp);
 	}
 
 	@Override

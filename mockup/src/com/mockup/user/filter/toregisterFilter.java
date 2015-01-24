@@ -29,7 +29,9 @@ public class toregisterFilter implements Filter {
 		User user=(User)session.getAttribute("newuser");
 		if(user==null)
 			session.setAttribute("newuser", new User());
-		chain.doFilter(req, resp);
+		((HttpServletRequest)req).getRequestDispatcher("/userRegister.vm").forward(req, resp);
+		return ;
+		//chain.doFilter(req, resp);
 
 	}
 

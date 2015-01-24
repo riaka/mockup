@@ -27,14 +27,10 @@ public class toshoppingcartFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
-		HttpSession session=((HttpServletRequest) req).getSession();
-		shoppingCart mycart=(shoppingCart)session.getAttribute("shoppingcart");
-		if(mycart==null)
-		{
-			mycart=new shoppingCart();
-			session.setAttribute("shoppingcart",mycart );
-		}
-		chain.doFilter(req, resp);
+		
+		req.getRequestDispatcher("/shoppingCart.vm").forward(req, resp);
+		return;
+		//chain.doFilter(req, resp);
 	}
 
 	@Override

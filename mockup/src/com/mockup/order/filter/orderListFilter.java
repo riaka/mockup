@@ -34,8 +34,10 @@ public class orderListFilter implements Filter {
 		
 		try{				
 			List orderlist = ServiceFactory.getOrderService().getOrderList();				
-			req.setAttribute("orderlist", orderlist); 				
-			chain.doFilter(req, resp);
+			req.setAttribute("orderlist", orderlist);
+			req.getRequestDispatcher("/orderList.vm").forward(req, resp);
+			return;
+			//chain.doFilter(req, resp);
 			
 		} catch (Exception e){
 			req.setAttribute("errormessage", e.getMessage()); 				

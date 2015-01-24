@@ -30,7 +30,9 @@ public class usermanageFilter implements Filter {
 		
 		List<User> users=ServiceFactory.getUserService().getUserList();
 		((HttpServletRequest) req).setAttribute("users", users);
-		chain.doFilter(req, resp);
+		req.getRequestDispatcher("/userManage.vm").forward(req, resp);
+		return;
+		//chain.doFilter(req, resp);
 
 	}
 

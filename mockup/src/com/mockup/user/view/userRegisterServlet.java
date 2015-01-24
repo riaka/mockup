@@ -26,7 +26,7 @@ public class userRegisterServlet extends HttpServlet{
 		String imagepath=(String)this.getServletContext().getAttribute("imagepath");
 		String csspath=(String)this.getServletContext().getAttribute("csspath");
 		HttpSession session=req.getSession();
-		User user=(User)session.getAttribute("user");
+		User user=(User)session.getAttribute("newuser");
 		String userid=user.getUserid();
 		String city=user.getCity();
 		String street1=user.getStreet1();

@@ -1,0 +1,189 @@
+		#set($contextpath=$!{application.getAttribute('contextpath')})
+		#set($csspath=$!{application.getAttribute('csspath')})
+		#set($imagepath=$!{application.getAttribute('imagepath')})
+		#set($user=$!{request.session.getAttribute('user')})
+		#set($country=$!{request.getAttribute('country')})
+		#set($province=$!{request.getAttribute('province')})
+		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 ">
+		<html>
+			<head>
+				<title>达内电子商务门户</title>
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+				<meta name="description" content="达内电子商务门户">
+				<link href="$!{csspath}/tarena.css" rel=stylesheet>
+			</head>
+			<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
+		
+		<!-- Header Start -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" id="table2">
+					<tr>
+						<td align="left" width="7%" background="$!{imagepath}/top_bg.gif"><img src="$!{imagepath}/logo.gif" width="286" height="58"></td>
+						<td width="62%" background="$!{imagepath}/top_bg.gif">　</td>
+						<td width="31%" background="$!{imagepath}/top_bg.gif" align="right"><img src="$!{imagepath}/top_r.gif" width="352" height="58" border="0"></td>
+					</tr>
+				</table>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		
+					<tr>
+						<td background="$!{imagepath}/dh_bg.gif" align="left" height="12">
+							<table width="100" border="0" cellspacing="0" cellpadding="0" align="center">
+								<tr>
+									<td width="5%"></td>
+									
+		          					<td width="10%"><a href="$!{contextpath}toproductlist"><img name="Image1" border="0" src="$!{imagepath}/index.gif" width="90" height="36"></a></td>
+									
+									<td width="10%"><a href="$!{contextpath}logoncheck/access/tousermanage"><img name="Image2" border="0" src="$!{imagepath}/reg.gif" width="92" height="36"></a></td>
+		
+									<td width="10%"><a href="$!{contextpath}logoncheck/toshoppingcart"><img name="Image4" border="0" src="$!{imagepath}/cart.gif" width="92" height="36"></a></td>
+		
+									<td width="10%"><a href="$!{contextpath}logoncheck/toorderlist"><img name="Image5" border="0" src="$!{imagepath}/order.gif" width="92" height="36"></a></td>
+		
+									<td width="10%"><a href="$!{contextpath}toproductlist"><img name="Image6" border="0" src="$!{imagepath}/exit.gif" width="92" height="36"></a></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<table cellspacing="1" cellpadding="3" align="center" border="0" width="98%">
+					<tr>
+						<td width="65%"><br>
+		
+							>> 欢迎访问 <b>达内电子商务门户</b>
+						</td>
+						<td width="35%" align="right">
+						</td>
+					</tr>
+				</table>
+		</html>
+		<!-- Header End -->
+		<!-- Body Start -->	
+		<form method="post" name="reg"  action="/ecport/user/modify.do">
+		
+		
+		
+			<input type="hidden" name="userid" value="admin"/>
+		
+			<input type="hidden" name="contactid" value="1"/>
+				<table cellspacing="1" cellpadding="3" align="center" class="tableBorder2">
+		
+					<tr>
+						<td height="25" valign="middle">
+							<img src="$!{imagepath}/Forum_nav.gif" align="absmiddle">
+							<a href=index.jsp>达内电子商务门户</a> →用户信息修改
+						</td>
+					</tr>
+				</table>
+				<br>
+				<table cellspacing="1" cellpadding="3" align="center" class="tableBorder1">
+					<tr>
+						 <td colspan="2" align="center" valign="middle" background="$!{imagepath}/bg2.gif" width="60%"> &nbsp;&nbsp;<font><b>用户信息修改</b></font> 
+		   				 </td>
+					<tr>
+					<tr>
+						<td width="40%" class="tablebody1"><b>用户名</b>：<br>英文字母或数字，最大长度为8位</td>
+						<td width="60%" class="tablebody1">	
+						<input type="text" maxLength="12" size="32"  value="$!{user.userid}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>
+						<font color="#FF0000">*</font></td>
+					</tr>
+					<tr>
+						<td width="40%" class="tablebody1"><b>密码</b>：<br>数字，6到8位</td>
+						<td width="60%" class="tablebody1">
+						<input type="password" maxLength="12" size="32" name="password" value="$!{user.password}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>
+						<font color="#FF0000">*</font></td>
+					</tr>
+					<tr>
+						<td width="40%" class="tablebody1"><b>确认密码</b>：<br>数字，6到8位</td>
+						<td width="60%" class="tablebody1">
+						<input type="password" maxLength="12" size="32" name="password2" value="$!{user.password}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>
+						<font color="#FF0000">*</font></td>
+					</tr>
+					<tr>
+						<td width="40%" class="tablebody1"><b>所在地区</b>：</td>
+						<td width="60%" class="tablebody1">
+							<select name="country" onchange="javascript:initProvince(this.value)" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000">	
+					#foreach($coun in $!{country})
+						#if($velocityCount == $!{user.country})
+							<option value="${velocityCount}" selected>$!{coun}</option>
+						#else
+							<option value="${velocityCount}" >$!{coun}</option>
+						#end
+					#end		
+							</select>
+							<select name="province" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000">
+		               		  	
+					#foreach($prov in $!{province})
+						#if($velocityCount == $!{user.province})
+							<option value="${velocityCount}" selected>$!{prov}</option>
+						#else
+							<option value="${velocityCount}" >$!{prov}</option>
+						#end
+					#end		
+						</select>省
+						<input type="text" size="8" name="city" value="$!{user.city}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>市/县</td>
+					</tr>
+					<tr>
+						<td class="tablebody1"><b>联系地址1</b>：</td>
+						<td class="tablebody1">
+						<input type="text" size="64" maxlength="32" name="street1" value="$!{user.street1}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>
+					</td>
+					<tr>
+						<td class="tablebody1"><b>联系地址2</b>：</td>
+						<td class="tablebody1">
+						<input type="text" size="64" maxlength="32" name="street2" value="$!{user.street2}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>
+					</td>
+					<tr>
+						<td class="tablebody1"><b>邮编</b>：</td>
+						<td class="tablebody1">
+						<input type="text" size="32" maxlength="8" name="zip" value="$!{user.zip}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>
+					</td>
+					<tr>
+						<td class="tablebody1"><b>家庭电话</b>：</td>
+						<td class="tablebody1">
+						<input type="text" size="32" maxlength="16" name="homephone" value="$!{user.homephone}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>
+					</td>
+					<tr>
+						<td class="tablebody1"><b>办公室电话</b>：</td>
+						<td class="tablebody1">
+						<input type="text" size="32" maxlength="16" name="officephone" value="$!{user.officephone}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>
+					</td>
+					<tr>
+						<td class="tablebody1"><b>手机</b>：</td>
+						<td class="tablebody1">
+						<input type="text" size="32" maxlength="16" name="cellphone" value="$!{user.cellphone}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/>
+					</td>
+					<tr>
+		
+					<td class="tablebody1"><b>Email地址</b>：<br>	请输入有效的邮件地址</td>
+					<td class="tablebody1">
+					<input maxLength="50" size="32" maxlength="32" name="email" value="$!{user.email}" style="font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000"/></td>
+					</tr>
+					<tr>
+					<td class="tablebody2" valign="middle" colspan="2" align="center">
+					<input type="button" value="修&nbsp;改" onclick="javascript:checkReg()"/>
+					</td>
+				</tr>
+				</table>
+		</form>
+		<html>
+			<body>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" height="28">
+				  <tr>
+		
+				    <td height="17" background="$!{imagepath}/bot_bg.gif"></td>
+				  </tr>
+				</table>
+				
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+				  <tr>
+				    <td bgcolor="#f1f1f6" height="53" valign="center">
+					<p align="center">
+						Copyright &copy;2004 - 2005 <a href="http://www.tarena.com.cn">
+		
+						<b><font face="Verdana,">Tarena</font></b>
+						<font color=#CC0000>.com.cn</font>
+					</a></p><br>
+				    </td>
+				  </tr>
+				</table>
+			</body>
+		</html>
