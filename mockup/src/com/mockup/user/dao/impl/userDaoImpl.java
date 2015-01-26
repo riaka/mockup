@@ -29,18 +29,17 @@ public class userDaoImpl implements userDao {
 			{
 				User user=new User();
 				user.setUserid(result.getString("userid"));
-				user.setPassword("password");
-				user.setStreet1("street1");
-				user.setStreet2("street2");
-				user.setCity("city");
-				user.setProvince("province");
-				user.setCountry("country");
-				user.setZip("zip");
-				user.setEmail("email");
-				user.setHomephone("homephone");
-				user.setCellphone("cellphone");
-				user.setOfficephone("officephone");
-				
+				user.setPassword(result.getString("password"));
+				user.setStreet1(result.getString("street1"));
+				user.setStreet2(result.getString("street2"));
+				user.setCity(result.getString("city"));
+				user.setProvince(result.getString("province"));
+				user.setCountry(result.getString("country"));
+				user.setZip(result.getString("zip"));
+				user.setEmail(result.getString("email"));
+				user.setHomephone(result.getString("homephone"));
+				user.setCellphone(result.getString("cellphone"));
+				user.setOfficephone(result.getString("officephone"));
 				users.add(user);
 			}
 			
